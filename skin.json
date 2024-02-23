@@ -4,10 +4,10 @@
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
-		"[https://central.polandball.wiki/wiki/Usuario:Dark] (fork)",
+		"[https://central.polandball.wiki/wiki/Usuario:Dark Dark] (fork)",
 		"..."
 	],
-	"url": "https://www.mediawiki.org/wiki/Skin:Citizen",
+	"url": "https://github.com/PolandballWiki/mediawiki-skins-Citizen",
 	"descriptionmsg": "citizen-skin-desc",
 	"namemsg": "skinname-citizen",
 	"license-name": "GPL-3.0-or-later",

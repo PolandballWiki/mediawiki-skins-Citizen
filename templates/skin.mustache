@@ -17,7 +17,6 @@
 		<div class="citizen-body-container">
 		<div class="citizen-header__background"></div> {{! Fondo de imagen especificado con CSS}}
 		{{>ContentHeader}}
-		<div class="citizen-content-container">
 		<div id="bodyContent" class="citizen-body" aria-labelledby="firstHeading">
 			<div id="contentSub"{{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
 			{{#html-undelete-link}}<div id="contentSub2">{{{.}}}</div>{{/html-undelete-link}}
@@ -30,5 +29,4 @@
 	</main>
 	{{{html-after-content}}}
 	{{#data-footer}}{{>Footer}}{{/data-footer}}
-	</div>
 </div>

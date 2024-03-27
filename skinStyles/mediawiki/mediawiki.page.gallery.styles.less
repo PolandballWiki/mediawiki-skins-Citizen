@@ -14,7 +14,7 @@ div.gallerytext {
 	padding: 0;
 	padding-right: var( --border-radius--small );
 	padding-left: var( --border-radius--small );
-	font-size: 0.8125rem;
+	font-size: var( --font-size-x-small );
 	color: var( --color-base--subtle );
 	letter-spacing: 0.025em;
 
@@ -26,6 +26,11 @@ div.gallerytext {
 ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper,
 ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper,
 ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper {
+	right: 0;
+	margin: var( --space-xs );
+	margin-right: 0; // MAGIC
+	padding: var( --space-xs );
+	width: auto !important;
 	font-weight: var( --font-weight-normal ); // should use the same weight as caption
 	background: var( --background-color-overlay );
 }
@@ -60,5 +65,7 @@ ul.gallery.mw-gallery-slideshow {
 		background-color: var( --color-surface-2 );
 		border-color: transparent;
 		border-radius: var( --border-radius--small );
+		max-width: ~'calc( 100% - var( --space-xs ) )';
+		margin: var( --space-xs );
 	}
 }

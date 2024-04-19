@@ -40,5 +40,6 @@
 	"prefs-citizen-theme-option-dark": "Oscuro",
 	"prefs-citizen-fontsize-label": "Tamaño del texto",
 	"prefs-citizen-pagewidth-label": "Anchura de la imagen",
+	"prefs-citizen-lineheight-label": "Altura de líneas",
 	"prefs-citizen-resetbutton-label": "Reiniciar por defecto"
 }

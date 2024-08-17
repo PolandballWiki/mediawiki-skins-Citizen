@@ -100,39 +100,17 @@
 		"SkinPageReadyConfig": "SkinHooks"
 	},
 	"ResourceModules": {
-		"skins.citizen.styles": {
-			"class": "MediaWiki\\ResourceLoader\\SkinModule",
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"features": {
-				"normalize": true,
-				"content-links": true,
-				"content-links-external": false,
-				"i18n-ordered-lists": true,
-				"i18n-headings": true,
-				"toc": false
-			},
-			"styles": [
-				"resources/skins.citizen.styles/skin.less"
-			]
-		},
 		"skins.citizen.styles.polandball": {
-			"class": "MediaWiki\\ResourceLoader\\SkinModule",
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"features": {
-				"normalize": true,
-				"content-links": true,
-				"content-links-external": false,
-				"i18n-ordered-lists": true,
-				"i18n-headings": true
+		"citizen": {
+			"+ext.CommentStreams": "skinStyles/extensions/CommentStreams/ext.CommentStreams.less",
+			"+ext.PortableInfobox.styles": "skinStyles/extensions/PortableInfobox/ext.PortableInfobox.styles.less"
 			},
-			"styles": [
-				"resources/skins.citizen.styles/skin.less"
+		"targets": [
+			"desktop",
+			"mobile"
+			],
+		"styles": [
+			"resources/skins.citizen.styles.polandball/skin_wp.less"
 			]
 		},
 		"skins.citizen.styles.fonts.cjk": {

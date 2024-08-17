@@ -118,6 +118,23 @@
 				"resources/skins.citizen.styles/skin.less"
 			]
 		},
+		"skins.citizen.styles.polandball": {
+			"class": "MediaWiki\\ResourceLoader\\SkinModule",
+			"targets": [
+				"desktop",
+				"mobile"
+			],
+			"features": {
+				"normalize": true,
+				"content-links": true,
+				"content-links-external": false,
+				"i18n-ordered-lists": true,
+				"i18n-headings": true
+			},
+			"styles": [
+				"resources/skins.citizen.styles/skin.less"
+			]
+		},
 		"skins.citizen.styles.fonts.cjk": {
 			"class": "MediaWiki\\ResourceLoader\\SkinModule",
 			"targets": [

@@ -323,7 +323,7 @@
 		background-color: var( --color-surface-1 );
 		border-color: transparent;
 		border-radius: var( --border-radius-medium );
-		box-shadow: var( --box-shadow-dialog );
+		box-shadow: var( --box-shadow-drop-xx-large );
 	}
 
 	&__header {
@@ -521,7 +521,7 @@
 	background-color: var( --color-surface-1 );
 	border-color: var( --border-color-interactive );
 	border-radius: 0 0 var( --border-radius-base ) var( --border-radius-base );
-	// box-shadow: var( --box-shadow-dialog );
+	// box-shadow: var( --box-shadow-drop-xx-large );
 
 	&__list-item {
 		color: var( --color-emphasized );
@@ -545,7 +545,7 @@
 .sd-tabs {
 	&__header {
 		// Use border instead of box-shadow to align with Citizen and Codex
-		border-bottom: 1px solid var( --border-color-base );
+		border-bottom: var( --border-width-base ) solid var( --border-color-base );
 		box-shadow: none;
 
 		&--gradient {
@@ -647,7 +647,7 @@
 	}
 
 	&__body {
-		z-index: 1;
+		z-index: @z-index-stacking-1;
 		padding: var( --space-sm ) 0 0 0;
 		// HACK: Hide thumbnail overflow
 		background-color: var( --color-surface-0 );

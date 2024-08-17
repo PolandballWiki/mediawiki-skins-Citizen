@@ -11,11 +11,6 @@
 @import '../../../resources/mixins.less';
 @import '../../../resources/variables.less';
 
-// Custom sticky header handling
-#citizen-page-header-sticky-sentinel {
-	display: none;
-}
-
 #filetoc {
 	display: flex;
 	padding: 0;
@@ -66,7 +61,7 @@
 		font-size: var( --font-size-small );
 		color: var( --color-subtle );
 		background-color: var( --color-surface-0 );
-		border: 1px solid var( --border-color-base );
+		border: var( --border-width-base ) solid var( --border-color-base );
 		border-radius: var( --border-radius-pill );
 
 		&:hover {
@@ -113,7 +108,7 @@
 	> a {
 		overflow: hidden;
 		border-radius: var( --border-radius-medium );
-		box-shadow: var( --box-shadow-card );
+		box-shadow: var( --box-shadow-drop-medium );
 	}
 }
 
@@ -142,7 +137,7 @@
 }
 
 .mw_metadata tr + tr {
-	border-top: 1px solid var( --border-color-base );
+	border-top: var( --border-width-base ) solid var( --border-color-base );
 }
 
 .mw_metadata td,

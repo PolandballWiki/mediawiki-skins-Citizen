@@ -21,7 +21,7 @@
 	margin: var( --space-xs );
 	background-color: var( --color-surface-1 );
 	border-radius: var( --border-radius-medium );
-	box-shadow: var( --box-shadow-dialog );
+	box-shadow: var( --box-shadow-drop-xx-large );
 
 	// The dialog will always show above the metadata in mobile view
 	@media ( max-width: @max-width-breakpoint-tablet ) {
@@ -119,7 +119,7 @@
 
 	&.mw-mmv-enable-confirmation-shown {
 		background-color: var( --background-color-success-subtle );
-		box-shadow: var( --box-shadow-dialog );
+		box-shadow: var( --box-shadow-drop-xx-large );
 
 		// Hide arrow since those are notifications
 		.mw-mmv-dialog-down-arrow {
@@ -613,7 +613,7 @@
 .mw-mmv-image-desc-div {
 	margin-top: var( --space-md );
 	margin-bottom: 0;
-	border-top: 1px solid var( --border-color-base );
+	border-top: var( --border-width-base ) solid var( --border-color-base );
 }
 
 .mw-mmv-about-links {
@@ -621,7 +621,7 @@
 	width: auto;
 	padding: var( --space-md ) 0;
 	font-size: var( --font-size-small );
-	border-top: 1px solid var( --border-color-base );
+	border-top: var( --border-width-base ) solid var( --border-color-base );
 }
 
 .mw-mmv-label {

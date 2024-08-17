@@ -7,8 +7,8 @@
 
 .citizen-card(@border-radius: true) {
 	background-color: var( --color-surface-1 );
-	border: 1px solid var( --border-color-base );
-	box-shadow: var( --box-shadow-dialog );
+	border: var( --border-width-base ) solid var( --border-color-base );
+	box-shadow: var( --box-shadow-drop-xx-large );
 
 	& when (@border-radius ) {
 		border-radius: var( --border-radius-medium );
@@ -33,7 +33,7 @@
 // When using fadeChildren, the child elements need to have
 // opacity: 0 set manually
 .citizen-card-show(@fadeChildren: true) {
-	z-index: @z-index-overlay;
+	z-index: @z-index-dropdown;
 	pointer-events: auto;
 	opacity: 1;
 	// HACK: So that visiblity won't wait 250ms to become visible
@@ -94,31 +94,34 @@
 	}
 }
 
-.citizen-sticky-header(@topOffset: 0, @bottomBorder: true, @zIndex: true) {
+.citizen-sticky-header(@bottomBorder: true, @zIndex: true) {
 	position: -webkit-sticky;
 	position: sticky;
-	top: @topOffset;
+	top: var( --height-sticky-header );
+	transition: var( --transition-menu );
+	transition-property: top;
 
 	& when (@bottomBorder ) {
-		border-bottom: 1px solid var( --border-color-base );
+		box-shadow: 0 1px 0 0 var( --border-color-base );
 	}
 
 	& when (@zIndex ) {
-		z-index: @z-index-page-header;
+		z-index: @z-index-sticky;
 	}
 
 	// HACK: Hide overflow
 	// This has an issue if parent has overflow set
 	&::before {
 		position: absolute;
-		top: @topOffset;
+		top: 0;
 		right: ~'calc( var(--padding-page ) * -1 )';
 		left: ~'calc( var(--padding-page ) * -1 )';
-		z-index: -1;
+		z-index: @z-index-bottom;
 		height: 100%;
 		content: '';
 		background-color: var( --color-surface-0 );
 		filter: opacity( 0.9 );
+		-webkit-backdrop-filter: saturate( 50% ) blur( 16px );
 		backdrop-filter: saturate( 50% ) blur( 16px );
 	}
 }
@@ -171,7 +174,7 @@
 }
 
 // Button Styles
-.button-blue() {
+.button-progressive() {
 	color: var( --color-inverted-primary ) !important;
 	background-color: var( --color-progressive );
 
@@ -181,15 +184,15 @@
 	}
 }
 
-.button-blue-hover() {
+.button-progressive-hover() {
 	background-color: var( --color-progressive--hover );
 }
 
-.button-blue-active() {
+.button-progressive-active() {
 	background-color: var( --color-progressive--active );
 }
 
-.button-red() {
+.button-destructive() {
 	color: var( --color-inverted-fixed ) !important;
 	background-color: var( --color-destructive );
 
@@ -199,11 +202,11 @@
 	}
 }
 
-.button-red-hover() {
+.button-destructive-hover() {
 	background-color: var( --color-destructive--hover );
 }
 
-.button-red-active() {
+.button-destructive-active() {
 	background-color: var( --color-destructive--active );
 }
 

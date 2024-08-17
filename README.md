@@ -38,6 +38,7 @@ OOUI | A | 0.44.3 | 2023-06-24
 ### Extensions
 Name | Grade | Version | Last updated
 :--- | :--- | :--- | :---
+[AccountInfo](https://www.mediawiki.org/wiki/Extension:AccountInfo) | A | REL1_39 `3145de8` | 2024-07-13
 [AdvancedSearch](https://www.mediawiki.org/wiki/Extension:AdvancedSearch) | B | REL1_39 `3a0eed7` | 2022-12-12
 [AJAXPoll](https://www.mediawiki.org/wiki/Extension:AJAXPoll) | A | REL1_39 `8429d8d` | 2022-10-25
 [ApprovedRevs](https://www.mediawiki.org/wiki/Extension:Approved_Revs) | B | N/A | N/A
@@ -47,11 +48,13 @@ Name | Grade | Version | Last updated
 [CategoryTree](https://www.mediawiki.org/wiki/Extension:CategoryTree) | B | N/A | N/A
 [CentralNotice](https://www.mediawiki.org/wiki/Extension:CentralNotice) | B | REL1_35 `4aa2a8f` | 2022-06-16
 [Cite](https://www.mediawiki.org/wiki/Extension:Cite) | A | N/A | N/A
+[CiteThisPage](https://www.mediawiki.org/wiki/Extension:CiteThisPage) | A | REL1_39 `1d21f67` | 2024-07-08
 [CleanChanges](https://www.mediawiki.org/wiki/Extension:CleanChanges) | B | MLEB 2021.07 | 2021-07-29
 [CodeEditor](https://www.mediawiki.org/wiki/Extension:CodeEditor) | A | REL1_39 `67c012c` | 2023-06-03
 [CodeMirror](https://www.mediawiki.org/wiki/Extension:CodeMirror) | A | REL1_35 `a326407` | 2023-05-24
 [CommentStreams](https://www.mediawiki.org/wiki/Extension:CommentStreams) | B | REL1_39 `f75ff3b` | 2023-06-02
 [CookieWarning](https://www.mediawiki.org/wiki/Extension:CookieWarning) | A | REL1_39 `021d9ea` | 2023-07-30
+[DataMaps](https://www.mediawiki.org/wiki/Extension:DataMaps) | A | 0.17.7 `9c448d3` | 2024-07-11
 [DiscussionTools](https://www.mediawiki.org/wiki/Extension:DiscussionTools) | A | REL1_39 `1aae2cc` | 2023-06-19
 [DismissableSiteNotice](https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice) | A | N/A | N/A
 [Echo](https://www.mediawiki.org/wiki/Extension:Echo) | A | REL1_35 `347c30e` | 2023-06-29
@@ -88,6 +91,7 @@ Name | Grade | Version | Last updated
 [TwoColConflict](https://www.mediawiki.org/wiki/Extension:TwoColConflict) | B | REL1_39 5a2a947 | 2023-01-09
 [UniversalLanguageSelector](https://www.mediawiki.org/wiki/Extension:UniversalLanguageSelector) | B | MLEB 2021.12 | 2022-05-17
 [UploadWizard](https://www.mediawiki.org/wiki/Extension:UploadWizard) | A | REL1_39 `9cd7a02` | 2023-01-08
+[UserProfileV2](https://gitlab.com/telepedia/extensions/userprofilev2) | A | Main `effb3b1` | 2024-07-25
 [VEForAll](https://www.mediawiki.org/wiki/Extension:VEForAll) | B | REL1_39 `0de7158` | 2023-05-27
 [VisualEditor](https://www.mediawiki.org/wiki/Extension:VisualEditor) | A | REL1_39 `65d89c9` | 2023-02-06
 [Wikibase](https://www.mediawiki.org/wiki/Extension:Wikibase) | B | REL1_35 `7bb503b` | 2022-05-11

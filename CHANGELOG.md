@@ -2,6 +2,122 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.26.0](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/compare/v2.25.0...v2.26.0) (2024-08-06)
+
+
+### Features
+
+* **core:** ✨ add reset styles for border-width and border-color ([2fe9443](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/2fe94438ee5ac93b73588b65e262890b45bb3abc))
+* **core:** ✨ tweak changelist and toc border width ([b9cd270](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/b9cd27043d73ef1dea0395c66123505c695e9f1d))
+* **core:** ✨ update box-shadow CSS variables ([c1370e9](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/c1370e95f04622d1f19be7cb38aa5133b6f4d763))
+* **fonts:** ✨ bump Roboto Flex to 3.200 ([4d803f8](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/4d803f841ddd227c097151fa434631253f1062de))
+* **OOUI:** ✨ update filter invert rules ([b922b03](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/b922b035ccf9a7bea58f971ae69d55fbd2435967))
+* **SMW:** ✨ tweak Tippy styles to match with Citizen ([f1e2130](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/f1e2130ed4440dfcb08c11e3b1fa2a8edc4b3d87))
+* **stickyHeader:** ✨ add transition to secondary sticky header ([1703d29](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/1703d299455e5a06e0a6c1f5dc9636066b03ed6a))
+* **UserProfileV2:** ✨ add UserProfileV2 style ([#914](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/914)) ([ffbaa5b](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/ffbaa5b9fa2ad60e78ed57a1d4ea827f7c4383b0))
+* **wikitable:** ✨ add new wikitable utility classes for additional styling ([362dcd0](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/362dcd01cc69a812ad3166b4153bc484dc701985))
+* **wikitable:** ✨ use more accurate selectors to apply border and border radius ([cc0820c](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/cc0820c204aac9addf1a9316fb4026bcd02abe5f))
+
+
+### Bug Fixes
+
+* **AccountInfo:** 🐛 incorrect CSS var name ([d115a5e](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/d115a5e5e82192f294feb18a4aa060a653ae28fa))
+* **AccountInfo:** 🐛 resetting incorrectly styled elements ([#915](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/915)) ([dad5c26](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/dad5c26e02ad2b0da6db461ff8a3c13ff7bd888a))
+* **core:** 🐛 do not use inset for box-shadow-border ([6711196](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/6711196bdaa3b696145a3f2c60cd5e60c11a41ef))
+* **core:** 🐛 fix uneven margin in table cells ([9baf851](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/9baf8510ce1854f6eb26dd22a67824318e6438ae))
+* **overflow:** 🐛 fix undefined wrapper ([764f759](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/764f7593c3a2d69ed7455b75dc5709794127adcd))
+* **stickyHeader:** 🐛 incorrect border box shadow ([9a0ebf4](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/9a0ebf444651d2a772dd8d99b554f4257ec8da77))
+* **WikiEditor:** 🐛 missing border bottom rule ([81348ff](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/81348ff27e2a904519502e95b424a52743451881))
+* **wikitable:** 🐛 incorrect border radius when both thead and tbody are present ([15ebea1](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/15ebea1c800c43938f680f00bca2b9e5460d1608))
+* **wikitable:** 🐛 incorrect selector for tfoot ([08a7a51](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/08a7a5156626fd70d9b96f100643568a5d314e8c))
+
+
+### Miscellaneous Chores
+
+* **husky:** 🔧 deprecate old commands ([bd0cea7](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/bd0cea79e49770b9c4eea2f05fb3d343881713a6))
+
+## [2.25.0](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/compare/v2.24.0...v2.25.0) (2024-07-19)
+
+
+### Features
+
+* **AccountInfo:** add AccountInfo styles ([#749](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/749)) ([99e7f08](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/99e7f083131e6cc16b9015bf0c83d2d9167276db))
+* **core:** ✨ implement Codex border-width tokens ([1fefddd](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/1fefddd41a4642ea1933e939a09d9d1263c2cd93))
+* **print:** ✨ add wikitable styles and hide contentSub ([5296aef](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/5296aef9def69c03bb8d9d12ab646f17ebcd9216))
+* **print:** ✨ allow font size settings affect print styles ([8641bec](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/8641becb2ae7a8e4b226ab65da53b0c09f3e5807))
+* **print:** ✨ hide page footer in print styles ([1da57e5](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/1da57e590230a3c42300eb90f3b34f4c60f32145))
+* **print:** ✨ rework print styles ([543400d](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/543400d9d5e905773429fd55a941c5e8f1b67d75))
+* **stickyHeader:** ✨ add CSS var --height-sticky-header to offset sticky elements ([c9d98e4](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/c9d98e477a3634d1c71408a65ae8d3666eb31a83))
+* **stickyHeader:** ✨ implement sticky header variables into other sticky styles ([a1ad423](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/a1ad423f2f6ebf501d4bf23d5e6be06b72a2b018))
+
+
+### Bug Fixes
+
+* **print:** 🐛 add important declaration to hidden print elements ([aeb083e](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/aeb083e74dd14b44cf535db6357abd79d5540973))
+* **print:** 🐛 only color variables require important declaration ([a9fb03f](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/a9fb03fc8e9d9a93b71d0b6fcf7e5a250c29ebb2))
+* **toc:** 🐛 ToC should have the same padding as other menu cards ([f3042f5](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/f3042f5b80f3426f59ec684511f2f952508de8c3))
+
+## [2.24.0](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/compare/v2.23.0...v2.24.0) (2024-07-12)
+
+
+### Features
+
+* **core:** ✨ use Codex tokens for z-index ([b5180bf](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/b5180bfbda805e475661b3aa61c3fa52d82b8841))
+* **DataMaps:** ✨ add DataMaps init styles ([46c139a](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/46c139ac86f1c4dca862133bffbe29645488cb8f))
+* **DataMaps:** ✨ add styles for Extension:DataMaps ([5fdcfc6](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/5fdcfc61f67ee93bcee8150fa96dce63e773833e))
+* **leaflet:** ✨ add Leaflet styles for Leaflet map extensions ([4c51200](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/4c51200ed5b620603f9e6df90a48ceb6b5b4d6e6))
+* **Leaflet:** ✨ bump Leaflet button sizes to match Codex ([a67f075](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/a67f075a6a92383235f6a534cd434ce71c860b99))
+* **Leaflet:** ✨ tweak Leaflet control margin ([fb965e3](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/fb965e37128e7cf8d57fd237d052ec846a55a161))
+* **pref:** ✨ add clientpref to disable auto-hide navigation ([f0d1176](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/f0d1176f2a4fd73a4b0003a50b07210d70136d4f)), closes [#841](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/841)
+* **stickyHeader:** ✨ reduce page title size ([f66348b](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/f66348bdbb1daef1934a297113dc5e9815b247ce))
+
+
+### Bug Fixes
+
+* **Changelist:** 🐛 fix incorrect legends z-index ([cae7c75](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/cae7c753ac5faa572de5afa3b8acf82d7958f91f))
+* **core:** 🐛 explictly set z-index for body container ([2794a32](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/2794a3269cef976c6971a82bdb9fc0459a391f28)), closes [#577](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/577)
+* **DataMaps:** 🐛 fix OOUI button width and invert icon on dark mode ([1688b92](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/1688b9245676dce577b49e262b6826fee7162ffd))
+* **DataMaps:** 🐛 remove unused styles ([0540f0d](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/0540f0d3934d2015102d87b38b20e1f6cbc8f653))
+* **Leaflet:** 🐛 fix button alignment ([7b6520b](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/7b6520b9ab8f59662dddf5b81b69c9b04d05b2d2))
+* **leaflet:** 🐛 incorrect checked label selector ([1471c1b](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/1471c1bc23c67f9314fb1138d63589740c3cb7d2))
+* **leaflet:** 🐛 re-introduce box-shadow back to touch buttons ([51caa71](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/51caa71777a96b90e3014d6e3764feab2378c4a3))
+* **stickyHeader:** use cached value for placeholder height if possible ([c3855ff](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/c3855ff8b9fdbfdd4d3e448a539ede43fa8b6e5c)), closes [#854](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/854)
+* **ToC:** 🐛 increase z-index of ToC backdrop ([c555dfe](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/c555dfe1bf7b3207919d3fc75267be8a7452bbdb))
+
+## [2.23.0](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/compare/v2.22.1...v2.23.0) (2024-07-08)
+
+
+### Features
+
+* **CiteThisPage:** ✨ add styles for Extension:CiteThisPage ([7178f6d](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/7178f6d372ebc506c6e0ffb0b207de7db595eca4))
+* **codex:** ✨ backport Codex v1.8.0 variables to mediawiki.skin.variables ([2896817](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/28968179ceb4211f9e38b7baa63dc10b875ec0cc))
+* **core:** ✨ clean up th styles ([232fd0c](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/232fd0cc4b8ae517c6eba75f218bababc77535ee))
+* **core:** ✨ theme and unify text selection color using progressive colors ([ba62b92](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/ba62b92e296efbd059140345520bfab62fdaab0d))
+* **dropdown:** ✨ add fade-in animation to dropdown menu ([20e4f7e](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/20e4f7ec6e9ed7efe3d3b9802fad1356c9958c43))
+* **PWA:** ✨ set orientation to natural ([1f417ed](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/1f417eda0b3d6d4f554d3023e62cc5d4a63ed8ec))
+* **SearchDigest:** ✨ tweak stats table styles ([9037fd1](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/9037fd17842d0e3df42bb1842b594ee849be44b1))
+* **stickyHeader:** ✨ add background transition ([8eef0aa](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/8eef0aae42182f8b100d553b079958c65c51ba3c))
+* **wikitable:** ✨ avoid double border when border attribute is active ([fccc024](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/fccc02497886909fd53eaaf642bb108cdeb40a9a))
+* **wikitable:** ✨ use box-shadow instead of border hacks to build table border ([442c272](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/442c272cabc3ffc0803eac8fcf5040910d2ad7e0))
+
+
+### Bug Fixes
+
+* **core:** 🐛 add webkit prefix to backdrop filter rules ([6dfc62b](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/6dfc62b15d163a6f9626d2cbe6d37b2ebae7ba75))
+* **core:** 🐛 fix incorrect screen reader text reset styles ([d3ef4af](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/d3ef4afeccf2c0ea744d1021f53178dfe2918209))
+* **core:** 🐛 incorrect box-shadow values ([9161988](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/91619884abdaafd38529b05e97f0abbccde1e6bd))
+* **dropdown:** 🐛 dropdown button should be above the backdrop ([c2523b1](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/c2523b141c8f551bf7bdb9ef4c9ac852a04314ec))
+* **dropdown:** 🐛 use both touchstart and mousedown event listener for click outside event ([a4593d7](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/a4593d7dd304e45c6ddcc804c9ea7778eb0a203c)), closes [#895](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/895)
+* **search:** 🐛 check if article path has question mark before adding search params ([ecc4cca](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/ecc4cca043133ff1f5e72e20f5d64ceb4bde57ed)), closes [#903](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/903)
+* **search:** 🐛 fix incorrect parameter for debounce function ([55b310d](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/55b310d26debfa4739256d6d10e7a566cf32ac4f))
+* **share:** 🐛 incorrect debounce parameter assignment ([e9fd488](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/e9fd488ceeb811472a10e44539bd215178d3674a))
+* **skinning:** 🐛 only apply top margin to figcaption when it is not empty ([3d7311d](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/3d7311dbbe5041425050819a7b590e317d53b134))
+* **stickyHeader:** 🐛 add a placeholder element to page header to avoid layout shift when stickied ([e5336c4](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/e5336c46105d002807ff2e2074d3dd0382484b69)), closes [#854](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/issues/854)
+* **stickyHeader:** 🐛 only add sticky class on resize when it is applicable ([7f9f975](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/7f9f975b9ed7515c28e9e1805681347f263e467e))
+* **stickyHeader:** 🐛 use more accurate calculation for placeholder ([a7a763b](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/a7a763b57ffe259a2fc3ad530a7bd5f010dba366))
+* **toc:** 🐛 fix transparent ToC button ([aaa677f](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/aaa677f2d6f4a464995349cc712be9215b82bd04))
+* **toc:** 🐛 keep ToC button at the same position ([72edb81](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/commit/72edb817bebebf3f382a5b9928193db57943019c))
+
 ## [2.22.1](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/compare/v2.22.0...v2.22.1) (2024-07-06)
 
 

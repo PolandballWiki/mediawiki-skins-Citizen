@@ -14,6 +14,7 @@
 	display: grid;
 	grid-template-areas:
  'header'
+		'afterHeader'
 		'content'
 		'footer';
 	// Using auto as min value will cause overflow
@@ -25,8 +26,7 @@
 }
 
 .citizen-page-header {
-	// So that the modal are above custom sticky headers
-	z-index: @z-index-page-header + 1;
+	z-index: @z-index-above-content;
 	display: flex;
 	flex-wrap: wrap;
 	grid-area: header;
@@ -47,6 +47,7 @@
 }
 
 .citizen-body {
+	z-index: @z-index-base; // Stop body content going over sticky header
 	grid-area: content;
 }
 
@@ -60,6 +61,7 @@
 		.citizen-body-container {
 			grid-template-areas:
  'header header'
+				'afterHeader afterHeader'
 				'content sidebar'
 				'footer footer';
 			grid-template-columns: minmax( 0, var( --width-layout ) ) var( --width-toc );

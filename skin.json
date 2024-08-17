@@ -1,9 +1,10 @@
 {
-	"name": "Citizen",
+	"name": "Citizen - WP V2",
 	"version": "2.22.1",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
+		"[https://central.polandball.wiki/wiki/Usuario:Dark Dark] (fork)",
 		"..."
 	],
 	"url": "https://www.mediawiki.org/wiki/Skin:Citizen",

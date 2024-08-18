@@ -102,16 +102,14 @@
 	},
 	"ResourceModules": {
 		"skins.citizen.styles.polandball": {
-		"citizen": {
-			"+ext.CommentStreams": "skinStyles/extensions/CommentStreams/ext.CommentStreams.less",
-			"+ext.PortableInfobox.styles": "skinStyles/extensions/PortableInfobox/ext.PortableInfobox.styles.less"
-			},
-		"targets": [
-			"desktop",
-			"mobile"
+			"targets": [
+				"desktop",
+				"mobile"
 			],
-		"styles": [
-			"resources/skins.citizen.styles.polandball/skin_wp.less"
+			"styles": [
+				"resources/skins.citizen.styles.polandball/skin_wp.less",
+				"resources/skins.citizen.polandball/extensions/CommentStreams/ext.CommentStreams.less",
+				"resources/skins.citizen.polandball/extensions/PortableInfobox/ext.PortableInfobox.styles.less"
 			]
 		},
 		"skins.citizen.styles.fonts.cjk": {

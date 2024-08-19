@@ -101,17 +101,6 @@
 		"SkinPageReadyConfig": "SkinHooks"
 	},
 	"ResourceModules": {
-		"skins.citizen.styles.polandball": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"styles": [
-				"resources/skins.citizen.styles.polandball/skin_wp.less",
-				"resources/skins.citizen.polandball/extensions/CommentStreams/ext.CommentStreams.less",
-				"resources/skins.citizen.polandball/extensions/PortableInfobox/ext.PortableInfobox.styles.less"
-			]
-		},
 		"skins.citizen.styles.fonts.cjk": {
 			"class": "MediaWiki\\ResourceLoader\\SkinModule",
 			"targets": [

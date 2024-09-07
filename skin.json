@@ -361,6 +361,7 @@
 	"ResourceModuleSkinStyles": {
 		"citizen": {
 			"+codex-styles": "skinStyles/codex/codex.styles.less",
+			"+polandball-styles": "resources/skins.citizen.polandball/skin_wp.less",
 			"+ext.AccountInfo.special": "skinStyles/extensions/AccountInfo/ext.AccountInfo.special.less",
 			"+ext.advancedSearch.initialstyles": "skinStyles/extensions/AdvancedSearch/ext.advancedSearch.initialstyles.less",
 			"+ext.advancedSearch.styles": "skinStyles/extensions/AdvancedSearch/ext.advancedSearch.styles.less",

@@ -58,6 +58,7 @@ Name | Grade | Version | Last updated
 [DiscussionTools](https://www.mediawiki.org/wiki/Extension:DiscussionTools) | A | REL1_39 `1aae2cc` | 2023-06-19
 [DismissableSiteNotice](https://www.mediawiki.org/wiki/Extension:DismissableSiteNotice) | A | N/A | N/A
 [Echo](https://www.mediawiki.org/wiki/Extension:Echo) | A | REL1_35 `347c30e` | 2023-06-29
+[FloatingUI](https://www.mediawiki.org/wiki/Extension:FloatingUI) | A | 0.0.1 | 2024-09-04
 [Flow (StructuredDiscussions)](https://www.mediawiki.org/wiki/Extension:StructuredDiscussions) | B | REL1_35 `e3379f0` | 2022-04-27
 [FlaggedRevs](https://www.mediawiki.org/wiki/Extension:FlaggedRevs) | B | REL1_39 `130a28f` | 2023-08-03
 [Graph](https://www.mediawiki.org/wiki/Extension:Graph) | B | N/A | N/A
@@ -81,10 +82,11 @@ Name | Grade | Version | Last updated
 [Semantic Result Formats](https://www.mediawiki.org/wiki/Extension:Semantic_Result_Formats) | E | N/A | N/A
 [SimpleTooltip](https://www.mediawiki.org/wiki/Extension:SimpleTooltip) | B | N/A | 2022-02-19
 [SmiteSpam](https://www.mediawiki.org/wiki/Extension:SmiteSpam) | B | REL1_39 `c81b04b` | 2023-05-30
+[StructuredNavigation](https://www.mediawiki.org/wiki/Extension:StructuredNavigation) | A | REL1_39 `55e2ec0` | 2024-09-06
 [SyntaxHighlight](https://www.mediawiki.org/wiki/Extension:SyntaxHighlight) | A | REL1_35 `05598b3` | 2023-05-22
 [Tabs](https://www.mediawiki.org/wiki/Extension:Tabs) | A | REL1_39 `63ccef2` | 2023-07-11
 [Tabber](https://www.mediawiki.org/wiki/Extension:Tabber) | A | N/A | N/A
-[TabberNeue](https://www.mediawiki.org/wiki/Extension:TabberNeue) | A | 2.1.1 | 2024-05-26
+[TabberNeue](https://www.mediawiki.org/wiki/Extension:TabberNeue) | A | 2.5.0 | 2024-08-31
 [TemplateData](https://www.mediawiki.org/wiki/Extension:TemplateData) | A | REL1_39 `7f8c5a8` | 2024-08-19
 [TimedMediaHandler](https://www.mediawiki.org/wiki/Extension:TimedMediaHandler) | B | N/A | N/A
 [Translate](https://www.mediawiki.org/wiki/Extension:Translate) | A | MLEB 2023.01 | 2023-02-17

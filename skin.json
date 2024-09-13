@@ -493,7 +493,7 @@
 			"+ext.searchdigest.styles": "skinStyles/extensions/SearchDigest/ext.searchdigest.styles.less",
 			"+ext.tabs": "skinStyles/extensions/Tabs/ext.tabs.less",
 			"+ext.tmh.player.styles": "skinStyles/extensions/TimedMediaHandler/ext.tmh.player.styles.less",
-			"+ext.translate": "skinStyles/extensions/Translate/ext.translate.less",
+			"+ext.translate": "resources/skins.citizen.polandball/extensions/Translate/ext.translate.less",
 			"+ext.translate.dropdownmenu": "skinStyles/extensions/Translate/ext.translate.dropdownmenu.less",
 			"+ext.translate.specialpages.styles": "skinStyles/extensions/Translate/ext.translate.specialpages.styles.less",
 			"+ext.translate.messagetable": "skinStyles/extensions/Translate/ext.translate.messagetable.less",

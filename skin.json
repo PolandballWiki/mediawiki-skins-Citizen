@@ -1,6 +1,6 @@
 {
 	"name": "Citizen - WP",
-	"version": "2.27.0",
+	"version": "2.32.0",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
@@ -33,6 +33,7 @@
 			"args": [
 				{
 					"name": "citizen",
+					"supportsMwHeading": true,
 					"responsive": true,
 					"link": {
 						"text-wrapper": {
@@ -158,6 +159,7 @@
 					"name": "resources/skins.citizen.scripts/config.json",
 					"callback": "MediaWiki\\Skins\\Citizen\\Hooks\\ResourceLoaderHooks::getCitizenResourceLoaderConfig"
 				},
+				"resources/skins.citizen.scripts/deferUntilFrame.js",
 				"resources/skins.citizen.scripts/dropdown.js",
 				"resources/skins.citizen.scripts/echo.js",
 				"resources/skins.citizen.scripts/lastModified.js",
@@ -166,9 +168,26 @@
 				"resources/skins.citizen.scripts/sectionObserver.js",
 				"resources/skins.citizen.scripts/search.js",
 				"resources/skins.citizen.scripts/sections.js",
+				"resources/skins.citizen.scripts/setupIntersectionObservers.js",
 				"resources/skins.citizen.scripts/share.js",
 				"resources/skins.citizen.scripts/stickyHeader.js",
-				"resources/skins.citizen.scripts/tableOfContents.js"
+				"resources/skins.citizen.scripts/tableOfContents.js",
+				{
+					"name": "resources/skins.citizen.scripts/tableOfContentsConfig.json",
+					"config": [
+						"CitizenTableOfContentsCollapseAtCount"
+					]
+				},
+				{
+					"name": "resources/skins.citizen.scripts/templates/TableOfContents__list.mustache",
+					"file": "templates/TableOfContents__list.mustache",
+					"type": "text"
+				},
+				{
+					"name": "resources/skins.citizen.scripts/templates/TableOfContents__line.mustache",
+					"file": "templates/TableOfContents__line.mustache",
+					"type": "text"
+				}
 			],
 			"messages": [
 				"citizen-share"
@@ -184,11 +203,11 @@
 		},
 		"skins.citizen.search": {
 			"es6": true,
-			"templates": [
-				"resources/skins.citizen.search/templates/typeahead.mustache"
-			],
 			"styles": [
-				"resources/skins.citizen.search/skins.citizen.search.less"
+				"resources/skins.citizen.search/skins.citizen.search.less",
+				"resources/skins.citizen.search/components/TypeaheadPlaceholder.less",
+				"resources/skins.citizen.search/components/TypeaheadList.less",
+				"resources/skins.citizen.search/components/TypeaheadListItem.less"
 			],
 			"packageFiles": [
 				"resources/skins.citizen.search/main.js",
@@ -197,7 +216,26 @@
 					"callback": "MediaWiki\\Skins\\Citizen\\Hooks\\ResourceLoaderHooks::getCitizenSearchResourceLoaderConfig"
 				},
 				"resources/skins.citizen.search/typeahead.js",
-				"resources/skins.citizen.search/htmlHelper.js",
+				{
+					"name": "resources/skins.citizen.search/templates/TypeaheadElement.mustache",
+					"file": "resources/skins.citizen.search/templates/TypeaheadElement.mustache",
+					"type": "text"
+				},
+				{
+					"name": "resources/skins.citizen.search/templates/TypeaheadPlaceholder.mustache",
+					"file": "resources/skins.citizen.search/templates/TypeaheadPlaceholder.mustache",
+					"type": "text"
+				},
+				{
+					"name": "resources/skins.citizen.search/templates/TypeaheadList.mustache",
+					"file": "resources/skins.citizen.search/templates/TypeaheadList.mustache",
+					"type": "text"
+				},
+				{
+					"name": "resources/skins.citizen.search/templates/TypeaheadListItem.mustache",
+					"file": "resources/skins.citizen.search/templates/TypeaheadListItem.mustache",
+					"type": "text"
+				},
 				"resources/skins.citizen.search/fetch.js",
 				"resources/skins.citizen.search/searchAction.js",
 				"resources/skins.citizen.search/searchClient.js",
@@ -212,6 +250,7 @@
 				"resources/skins.citizen.search/searchClients/smwAskApi.js"
 			],
 			"messages": [
+				"citizen-search-advancedsearch",
 				"citizen-search-fulltext",
 				"citizen-search-editpage",
 				"citizen-search-mediasearch",
@@ -223,6 +262,7 @@
 			],
 			"dependencies": [
 				"mediawiki.storage",
+				"mediawiki.template.mustache",
 				"mediawiki.user",
 				"mediawiki.util"
 			],
@@ -605,6 +645,7 @@
 			"+oojs-ui-widgets": "skinStyles/ooui/oojs-ui-widgets.less",
 			"+oojs-ui-widgets.styles": "skinStyles/ooui/oojs-ui-widgets.less",
 			"+oojs-ui-windows": "skinStyles/ooui/oojs-ui-windows.less",
+			"+jquery.jsonview": "skinStyles/jquery/jsonview.less",
 			"+jquery.spinner.styles": "skinStyles/jquery.spinner/jquery.spinner.styles.less",
 			"+jquery.ui": "skinStyles/jquery/ui.less",
 			"+@wikimedia/codex": "skinStyles/codex/codex.styles.less"
@@ -734,6 +775,10 @@
 			"description": "Defines css classes ignored by overflow wrapper",
 			"descriptionmsg": "citizen-config-overflownowrapclasses",
 			"public": true
+		},
+		"TableOfContentsCollapseAtCount": {
+			"value": 28,
+			"description": "@var The minimum number of headings required to collapse all headings in the sticky table of contents by default."
 		}
 	},
 	"manifest_version": 2

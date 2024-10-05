@@ -3,8 +3,6 @@
 */
 html {
 	box-sizing: border-box;
-	// Not ideal but it works
-	scroll-padding-top: 6rem;
 }
 
 html,
@@ -35,6 +33,10 @@ body {
 :focus-visible {
 	outline: var( --border-width-thick ) solid var( --color-progressive );
 	outline-offset: 1px;
+}
+
+::placeholder {
+	color: var( --color-subtle );
 }
 
 ::selection {

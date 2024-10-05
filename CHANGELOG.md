@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.34.0](https://github.com/PolandballWiki/mediawiki-skins-Citizen/compare/v2.33.0...v2.34.0) (2024-10-05)
+
+
+### Features
+
+* **pagetools:** ✨ add border to floating buttons ([0858378](https://github.com/PolandballWiki/mediawiki-skins-Citizen/commit/085837807f15dbbcdf4c89bd559f02b44f73bced))
+* **Popups:** ✨ make popup cards more compact ([5a3a94a](https://github.com/PolandballWiki/mediawiki-skins-Citizen/commit/5a3a94a6e0400464e7499b7ac5178aacc493f55a))
+
+
+### Bug Fixes
+
+* **menu:** 🐛 hide keyhint in main menu items ([249ce64](https://github.com/PolandballWiki/mediawiki-skins-Citizen/commit/249ce640e90a67c48e313db53c38e8012e1115ff))
+* **pagetools:** 🐛 do not bound the width of page action card to page tools ([96004fd](https://github.com/PolandballWiki/mediawiki-skins-Citizen/commit/96004fd30dd41d754d6a5ae99a6c5107eb27fa5b))
+
 ## [2.33.0](https://github.com/PolandballWiki/mediawiki-skins-Citizen/compare/v2.32.0...v2.33.0) (2024-10-05)
 
 

@@ -24,51 +24,54 @@
 
 // Extension:PortableInfobox - WP
 .portable-infobox {
-    border-radius: var(--border-radius--medium);
-    border: 1px solid var(--border-color-base);
-    background: var(--border-color-base);
-    backdrop-filter: @filter-glass;
-    transition: all 0.3s;
-    margin-top: 10px;
+	margin-top: 10px;
+	background: var( --border-color-base );
+	backdrop-filter: @filter-glass;
+	border: 1px solid var( --border-color-base );
+	border-radius: var( --border-radius--medium );
+	transition: all 0.3s;
 
-    .pi-title {
-        background: var(--color-surface-2);
-        border-radius: var(--border-radius--medium);
-        border: 1px solid var(--border-color-base) !important;
-        margin: 5px !important;
-    }
+	.pi-title {
+		margin: 5px !important;
+		background: var( --color-surface-2 );
+		border: 1px solid var( --border-color-base ) !important;
+		border-radius: var( --border-radius--medium );
+	}
 
-    .pi-image-thumbnail {
-        padding: 5px;
-        align-self: center;
-        border-radius: var(--border-radius--large);
-    }
+	.pi-image-thumbnail {
+		align-self: center;
+		padding: 5px;
+		border-radius: var( --border-radius--large );
+	}
 
-    .pi-group > p {
-        text-align: center;
-        font-weight: 500;
-        padding: 5px;
-        border: 1px solid var(--border-color-base);
-        background: var(--color-surface-2);
-        font-size: 18px;
-        border-radius: var(--border-radius--medium);
-        margin: 0 4px;
-    }
-    .pi-data-label {
-        display: none; // TODO: Check element
-    }
-    .pi-secondary-background {
-        background: none !important;
-    }
-    .pi-data-value {
-        padding: 8px 5px;
-    }
+	.pi-group > p {
+		padding: 5px;
+		margin: 0 4px;
+		font-size: 18px;
+		font-weight: 500;
+		text-align: center;
+		background: var( --color-surface-2 );
+		border: 1px solid var( --border-color-base );
+		border-radius: var( --border-radius--medium );
+	}
 
-    .pi-data > p {
-        padding: 0 5px;
-        width: fit-content;
-        white-space: nowrap;
-    }
+	.pi-data-label {
+		display: none; // TODO: Check element
+	}
+
+	.pi-secondary-background {
+		background: none !important;
+	}
+
+	.pi-data-value {
+		padding: 8px 5px;
+	}
+
+	.pi-data > p {
+		width: fit-content;
+		padding: 0 5px;
+		white-space: nowrap;
+	}
 }
 
 .portable-infobox p {

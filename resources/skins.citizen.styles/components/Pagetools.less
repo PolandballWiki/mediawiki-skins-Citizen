@@ -149,6 +149,14 @@
 	}
 }
 
+.client-nojs {
+	// Hide share button completely when JS is not supported
+	// Since it won't do anything
+	.citizen-share {
+		display: none;
+	}
+}
+
 // To avoid more menu from overflow in narrow screen
 @media ( max-width: @max-width-breakpoint-tablet ) {
 	.page-actions {
@@ -178,11 +186,10 @@
 			bottom: 100%;
 			/* Fix card width issue when the page tool bar is narrow */
 			width: max-content;
-			max-width: ~'calc( 100vw - var( --space-xs ) * 2 )';
 		}
 	}
 
-	.citizen-page-languages > .citizen-dropdown-summary::after {
+	.citizen-page-languages .citizen-dropdown-summary::after {
 		// Blend with background
 		background: var( --color-surface-1 );
 	}

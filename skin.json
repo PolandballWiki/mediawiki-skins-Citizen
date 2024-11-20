@@ -1,6 +1,6 @@
 {
 	"name": "Steller",
-	"version": "2.33.0",
+	"version": "2.39.2",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149] (Citizen)",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx] (Citizen)",
@@ -35,6 +35,7 @@
 					"name": "citizen",
 					"supportsMwHeading": true,
 					"responsive": true,
+					"toc": false,
 					"link": {
 						"text-wrapper": {
 							"tag": "span"
@@ -61,6 +62,7 @@
 						"citizen-drawer-toggle",
 						"citizen-jumptotop",
 						"citizen-languages-toggle",
+						"citizen-preferences-toggle",
 						"citizen-search-toggle",
 						"citizen-usermenu-toggle",
 						"randompage",
@@ -164,12 +166,14 @@
 				"resources/skins.citizen.scripts/echo.js",
 				"resources/skins.citizen.scripts/lastModified.js",
 				"resources/skins.citizen.scripts/overflowElements.js",
+				"resources/skins.citizen.scripts/resizeObserver.js",
 				"resources/skins.citizen.scripts/scrollObserver.js",
 				"resources/skins.citizen.scripts/sectionObserver.js",
 				"resources/skins.citizen.scripts/search.js",
 				"resources/skins.citizen.scripts/sections.js",
-				"resources/skins.citizen.scripts/setupIntersectionObservers.js",
+				"resources/skins.citizen.scripts/setupObservers.js",
 				"resources/skins.citizen.scripts/share.js",
+				"resources/skins.citizen.scripts/speculationRules.js",
 				"resources/skins.citizen.scripts/stickyHeader.js",
 				"resources/skins.citizen.scripts/tableOfContents.js",
 				{
@@ -190,7 +194,8 @@
 				}
 			],
 			"messages": [
-				"citizen-share"
+				"citizen-share",
+				"citizen-share-copied"
 			],
 			"dependencies": [
 				"mediawiki.util",
@@ -332,6 +337,7 @@
 			"useDataURI": false,
 			"defaultColor": "#000",
 			"class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
+			"variants": {},
 			"icons": [
 				"arrowPrevious",
 				"article",
@@ -341,7 +347,6 @@
 				"articlesSearch",
 				"bell",
 				"block",
-				"clear",
 				"collapse",
 				"database",
 				"die",
@@ -609,6 +614,7 @@
 			"+mediawiki.editfont.styles": "skinStyles/mediawiki/mediawiki.editfont.styles.less",
 			"+mediawiki.interface.helpers.styles": "skinStyles/mediawiki/mediawiki.interface.helpers.styles.less",
 			"+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
+			"+mediawiki.page.ready": "skinStyles/mediawiki/teleportTarget.less",
 			"+mediawiki.pager.styles": "skinStyles/mediawiki/mediawiki.pager.styles.less",
 			"mediawiki.skinning.content.parsoid": [],
 			"mediawiki.skinning.interface": [],
@@ -660,7 +666,7 @@
 			"public": true
 		},
 		"ThemeColor": {
-			"value": "#131a21",
+			"value": "#0d0e12",
 			"description": "The theme color defined in the meta tag",
 			"descriptionmsg": "citizen-config-themecolor",
 			"public": true
@@ -671,16 +677,16 @@
 			"descriptionmsg": "citizen-config-enablemanifest",
 			"public": true
 		},
-		"ManifestThemeColor": {
-			"value": "#131a21",
-			"description": "The theme color defined in the web app manifest",
-			"descriptionmsg": "citizen-config-manfiestthemecolor",
-			"public": true
-		},
-		"ManifestBackgroundColor": {
-			"value": "#131a21",
-			"description": "The background color defined in the web app manifest",
-			"descriptionmsg": "citizen-config-manifestbackgroundcolor",
+		"ManifestOptions": {
+			"value": {
+				"background_color": "#0d0e12",
+				"description": "",
+				"short_name": "",
+				"theme_color": "#0d0e12",
+				"icons": []
+			},
+			"description": "Configuration for web app manifest",
+			"descriptionmsg": "citizen-config-manifestoptions",
 			"public": true
 		},
 		"SearchModule": {
@@ -766,6 +772,7 @@
 		},
 		"OverflowNowrapClasses": {
 			"value": [
+				"noresize",
 				"citizen-table-nowrap",
 				"cargoDynamicTable",
 				"dataTable",

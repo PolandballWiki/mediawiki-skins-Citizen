@@ -13,8 +13,6 @@
 	padding: var( --space-xs );
 	background-color: var( --color-surface-0 );
 	border-top: var( --border-width-base ) solid var( --border-color-base );
-	transition: var( --transition-menu );
-	transition-property: transform;
 
 	&__item {
 		display: flex;
@@ -82,6 +80,14 @@
 		img {
 			margin: auto;
 		}
+
+		.citizen-ui-icon {
+			position: absolute;
+
+			&::before {
+				opacity: 0;
+			}
+		}
 	}
 
 	&__inner {
@@ -138,6 +144,14 @@
 		.citizen-ui-icon + span {
 			.sr-only;
 		}
+	}
+}
+
+.client-nojs {
+	// Hide preferences button completely when JS is not supported
+	// Since it won't do anything
+	.citizen-preferences {
+		display: none;
 	}
 }
 

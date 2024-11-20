@@ -85,14 +85,6 @@
 	}
 }
 
-/* Skeleton screen loading */
-body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
-	padding: var( --space-md );
-	font-size: var( --font-size-small );
-	background: var( --color-surface-2 );
-	border-radius: var( --border-radius-medium );
-}
-
 .client-js {
 	.mw-recentchanges-toplinks {
 		padding-left: 0;
@@ -133,6 +125,11 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
  * Sometimes wiki transclude those pages and these styles will break regular pages
  */
 .ns-special {
+	/* Disable sticky header due to performance issue on long RC */
+	#citizen-page-header-sticky-sentinel {
+		display: none;
+	}
+
 	.mw-changeslist h4 {
 		.citizen-sticky-header( false, false );
 	}

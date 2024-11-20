@@ -1,7 +1,7 @@
 .citizen-toc {
-	--citizen-toc-toggle-size: ~'calc( var( --font-size-small ) * var( --line-height-xs ) + var( --space-xs ) * 2 )';
+	--citizen-toc-toggle-size: ~'calc( var( --font-size-small ) * var( --line-height-xx-small ) + var( --space-xs ) * 2 )';
 	font-size: var( --font-size-small );
-	line-height: var( --line-height-xs );
+	line-height: var( --line-height-xx-small );
 
 	&-top {
 		.citizen-ui-icon {
@@ -28,13 +28,13 @@
 		padding: var( --space-xs );
 		font-weight: var( --font-weight-medium );
 		color: var( --color-emphasized );
+		border-radius: var( --border-radius-base );
 
-		&.citizen-toc-top {
+		.citizen-toc &.citizen-toc-top {
 			height: 0;
-			padding-top: 0;
-			padding-bottom: 0;
-			opacity: 0 !important;
-			transition-property: opacity, height, padding !important;
+			padding-block: 0;
+			opacity: 0;
+			transition-property: opacity, height;
 		}
 
 		&:has( + .citizen-toc-toggle ) {
@@ -74,8 +74,7 @@
 		left: 0;
 		flex-shrink: 0;
 		width: var( --border-width-thick );
-		margin-top: var( --space-xs );
-		margin-bottom: var( --space-xs );
+		margin-block: var( --space-xs );
 		margin-left: ~'calc( var( --border-width-thick ) * -1 )';
 	}
 
@@ -86,6 +85,11 @@
 
 	&-numb {
 		display: none;
+		color: var( --color-subtle );
+	}
+
+	&-summary {
+		font-size: var( --font-size-x-small );
 		color: var( --color-subtle );
 	}
 
@@ -119,7 +123,7 @@
 		display: grid;
 		place-content: center;
 		cursor: pointer;
-		border-radius: var( --border-radius--small );
+		border-radius: var( --border-radius-base );
 
 		.citizen-ui-icon {
 			&::before {
@@ -144,12 +148,11 @@
 }
 
 // Sticky header styles
-.citizen-page-header--sticky {
+.citizen-sticky-header-visible {
 	.citizen-toc-top.citizen-toc-link {
 		height: 2rem; // 1rem text + 1rem padding
-		padding-top: var( --space-xs );
-		padding-bottom: var( --space-xs );
-		opacity: 1 !important;
+		padding-block: var( --space-xs );
+		opacity: 1;
 	}
 }
 
@@ -159,13 +162,13 @@
 		bottom: ~'calc( var( --header-size ) + var(  --space-xs ) )';
 		left: 0;
 		z-index: @z-index-sticky; // Keep ToC above sticky header and page action, but below site header
-		display: flex;
-		flex-direction: column-reverse; // HACK: Place button below ToC
 		pointer-events: none; // HACK: Make background clickable
-		transition: var( --transition-menu );
-		transition-property: bottom; // Transform won't work with the backdrop
 
 		&-card {
+			position: absolute;
+			// Get consistent margin
+			bottom: ~'calc( 100% - var( --space-xs ) )';
+			width: max-content;
 			// This is not bulletproof since it will get covered by page header
 			// in extremely short height. but it should be good for now
 			max-height: ~'calc( var( --header-card-maxheight ) - 8rem )';
@@ -175,9 +178,7 @@
 
 		.citizen-dropdown {
 			&-summary {
-				position: absolute;
-				bottom: 0;
-				left: 0;
+				box-sizing: border-box;
 				display: grid;
 				place-content: center;
 				width: var( --toolbar-size );
@@ -223,14 +224,21 @@
 		overscroll-behavior: contain;
 
 		.citizen-menu__card {
+			min-width: auto;
 			margin: 0;
 			background: transparent;
 			border: 0;
+			border-radius: 0;
 			box-shadow: none;
 			transform: none;
+			content-visibility: visible;
 
 			> * {
 				opacity: 1;
+			}
+
+			.citizen-ui-icon {
+				content-visibility: visible;
 			}
 		}
 

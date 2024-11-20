@@ -1,7 +1,9 @@
 // Adopted from Vector 2022
 const
 	scrollObserver = require( './scrollObserver.js' ),
+	resizeObserver = require( './resizeObserver.js' ),
 	initSectionObserver = require( './sectionObserver.js' ),
+	stickyHeader = require( './stickyHeader.js' ),
 	initTableOfContents = require( './tableOfContents.js' ),
 	deferUntilFrame = require( './deferUntilFrame.js' ),
 	TOC_ID = 'citizen-toc',
@@ -15,7 +17,10 @@ const
 		.map( ( sel ) => `.mw-parser-output ${ sel }` ).join( ', ' ),
 	HEADLINE_SELECTOR = [ '.mw-headline', ...HEADING_TAGS.map( ( tag ) => `${ tag }[id]` ) ]
 		.map( ( sel ) => `.mw-parser-output ${ sel }` ).join( ', ' ),
-	TOC_SECTION_ID_PREFIX = 'toc-';
+	TOC_SECTION_ID_PREFIX = 'toc-',
+	SCROLL_DOWN_CLASS = 'citizen-scroll--down',
+	SCROLL_UP_CLASS = 'citizen-scroll--up',
+	PAGE_TITLE_INTERSECTION_CLASS = 'citizen-below-page-title';
 
 /**
  * @callback OnIntersection
@@ -117,14 +122,8 @@ const setupTableOfContents = ( tocElement, bodyContent, initSectionObserverFn ) 
 		sectionObserver.setElements( elements() );
 	};
 
-	let isSticky;
-
 	mw.hook( 've.activationStart' ).add( () => {
 		sectionObserver.pause();
-		isSticky = document.body.classList.contains( 'citizen-page-header--sticky' );
-		if ( isSticky ) {
-			document.body.classList.remove( 'citizen-page-header--sticky' );
-		}
 	} );
 	mw.hook( 'wikipage.tableOfContents' ).add( ( sections ) => {
 		tableOfContents.reloadTableOfContents( sections ).then( () => {
@@ -133,9 +132,6 @@ const setupTableOfContents = ( tocElement, bodyContent, initSectionObserverFn ) 
 	} );
 	mw.hook( 've.deactivationComplete' ).add( () => {
 		updateElements();
-		if ( isSticky ) {
-			document.body.classList.add( 'citizen-page-header--sticky' );
-		}
 	} );
 
 	const setInitialActiveSection = () => {
@@ -183,32 +179,109 @@ const setupTableOfContents = ( tocElement, bodyContent, initSectionObserverFn ) 
  * @return {void}
  */
 const main = () => {
-	const isIntersectionObserverSupported = 'IntersectionObserver' in window;
-
-	//
-	//  Table of contents
-	//
 	const tocElement = document.getElementById( TOC_ID );
 	const bodyContent = document.getElementById( BODY_CONTENT_ID );
 
-	const isToCUpdatingAllowed = isIntersectionObserverSupported &&
-		window.requestAnimationFrame;
-	const tableOfContents = isToCUpdatingAllowed ?
-		setupTableOfContents( tocElement, bodyContent, initSectionObserver ) : null;
+	/* eslint-disable no-unused-vars */
+	const tableOfContents = setupTableOfContents( tocElement, bodyContent, initSectionObserver );
 
-	// eslint-disable-next-line no-unused-vars
-	const observer = scrollObserver.initScrollObserver(
+	const
+		stickyHeaderElement = document.getElementById( stickyHeader.STICKY_HEADER_ID ),
+		stickyIntersection = document.getElementById( 'citizen-page-header-sticky-sentinel' ),
+		stickyPlaceholder = document.getElementById( stickyHeader.STICKY_HEADER_PLACEHOLDER_ID );
+
+	// eslint-disable-next-line es-x/no-optional-chaining
+	const shouldStickyHeader = getComputedStyle( stickyIntersection )?.getPropertyValue( 'display' ) !== 'none';
+	const isStickyHeaderAllowed = !!stickyHeaderElement &&
+		!!stickyPlaceholder &&
+		!!stickyIntersection &&
+		shouldStickyHeader;
+
+	const scrollDirectionObserver = scrollObserver.initDirectionObserver(
 		() => {
-			if ( tableOfContents ) {
-				tableOfContents.updateTocToggleStyles( true );
-			}
+			document.body.classList.remove( SCROLL_UP_CLASS );
+			document.body.classList.add( SCROLL_DOWN_CLASS );
 		},
 		() => {
-			if ( tableOfContents ) {
-				tableOfContents.updateTocToggleStyles( false );
+			document.body.classList.remove( SCROLL_DOWN_CLASS );
+			document.body.classList.add( SCROLL_UP_CLASS );
+		},
+		10
+	);
+
+	const resumeStickyHeader = () => {
+		if (
+			isStickyHeaderAllowed &&
+			!document.body.classList.contains( stickyHeader.STICKY_HEADER_VISIBLE_CLASS ) &&
+			document.body.classList.contains( PAGE_TITLE_INTERSECTION_CLASS )
+		) {
+			stickyHeader.show( stickyHeaderElement, stickyPlaceholder );
+			if ( document.documentElement.classList.contains( 'citizen-feature-autohide-navigation-clientpref-1' ) ) {
+				scrollDirectionObserver.resume();
+			}
+		}
+	};
+
+	const pauseStickyHeader = () => {
+		if ( document.body.classList.contains( stickyHeader.STICKY_HEADER_VISIBLE_CLASS ) ) {
+			stickyHeader.hide( stickyHeaderElement, stickyPlaceholder );
+			scrollDirectionObserver.pause();
+		}
+	};
+
+	const pageHeaderObserver = scrollObserver.initScrollObserver(
+		() => {
+			document.body.classList.add( PAGE_TITLE_INTERSECTION_CLASS );
+			resumeStickyHeader();
+		},
+		() => {
+			document.body.classList.remove( PAGE_TITLE_INTERSECTION_CLASS );
+			pauseStickyHeader();
+		}
+	);
+
+	pageHeaderObserver.observe( stickyIntersection );
+
+	// Initialize var
+	let bodyWidth = 0;
+	const bodyObserver = resizeObserver.initResizeObserver(
+		// onResize
+		() => {},
+		// onResizeStart
+		( entry ) => {
+			// eslint-disable-next-line es-x/no-optional-chaining
+			bodyWidth = entry.borderBoxSize?.[ 0 ].inlineSize;
+			// Disable all CSS animation during resize
+			if ( document.documentElement.classList.contains( 'citizen-animations-ready' ) ) {
+				document.documentElement.classList.remove( 'citizen-animations-ready' );
+			}
+		},
+		// onResizeEnd
+		( entry ) => {
+			// eslint-disable-next-line es-x/no-optional-chaining
+			const newBodyWidth = entry.borderBoxSize?.[ 0 ].inlineSize;
+			const shouldRecalcStickyHeader =
+				document.body.classList.contains( PAGE_TITLE_INTERSECTION_CLASS ) &&
+				typeof newBodyWidth === 'number' &&
+				bodyWidth !== newBodyWidth;
+
+			// Enable CSS animation after resize is finished
+			document.documentElement.classList.add( 'citizen-animations-ready' );
+			// Recalculate sticky header height at the end of the resize
+			if ( shouldRecalcStickyHeader ) {
+				resumeStickyHeader();
 			}
 		}
 	);
+	bodyObserver.observe( document.body );
+
+	mw.hook( 've.activationStart' ).add( () => {
+		pauseStickyHeader();
+	} );
+
+	mw.hook( 've.deactivationComplete' ).add( () => {
+		resumeStickyHeader();
+	} );
 };
 
 module.exports = {

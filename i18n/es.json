@@ -9,10 +9,10 @@
 			"MarleneR329"
 		]
 	},
-	"citizen-skin-desc": "Una apariencia hermosa, usable y responsiva para MediaWiki que hace que las extensiones formen parte de la experiencia cohesiva. Creado inicialmente para [https://starcitizen.tools/ Star Citizen Wiki].",
+	"citizen-skin-desc": "Una apariencia hermosa, usable y responsiva para MediaWiki que hace que las extensiones formen parte de la experiencia cohesiva. Steller es una skin basada en Citizen. Su núcleo sigue siendo el mismo.",
 	"citizen-prefs-talkpage": "[[mw:Skin_talk:Citizen|Discusión]]",
-	"citizen.css": "/* Todo CSS colocado en esta página será cargado para los usuarios que usen la apariencia \"Citizen\" */",
-	"citizen.js": "/* Todo código JavaScript escrito aquí se cargará para todos los usuarios de la apariencia Citizen */",
+	"citizen.css": "/* Todo CSS colocado en esta página será cargado para los usuarios que usen la apariencia \"Steller\" */",
+	"citizen.js": "/* Todo código JavaScript escrito aquí se cargará para todos los usuarios de la apariencia Steller */",
 	"citizen-drawer-toggle": "Menú alternativo",
 	"citizen-usermenu-toggle": "Menú alternativo personal",
 	"citizen-search-toggle": "Búsqueda alternativa",

@@ -19,10 +19,10 @@
 		]
 	},
 	"skinname-citizen": "Citizen",
-	"citizen-skin-desc": "Ein schöner, benutzerfreundlicher, responsiver MediaWiki-Skin, der Erweiterungen zu einem Teil des kohärenten Erlebnisses macht. Ursprünglich wurde er für das [https://starcitizen.tools/ Star Citizen Wiki] erstellt.",
+	"citizen-skin-desc": "Ein schöner, benutzerfreundlicher, responsiver MediaWiki-Skin, der Erweiterungen zu einem Teil des kohärenten Erlebnisses macht. Steller ist ein Skin, der auf Citizen basiert. Sein Kern bleibt derselbe.",
 	"citizen-prefs-talkpage": "[[mw:Skin_talk:Citizen|Diskussion]]",
-	"citizen.css": "/* Das folgende CSS wird für Benutzer des Citizen-Skins geladen */",
-	"citizen.js": "/* Das folgende JavaScript wird für Benutzer des Citizen-Skins geladen */",
+	"citizen.css": "/* Das folgende CSS wird für Benutzer des Steller-Skins geladen */",
+	"citizen.js": "/* Das folgende JavaScript wird für Benutzer des Steller-Skins geladen */",
 	"citizen-drawer-toggle": "Menü aufrufen",
 	"citizen-usermenu-toggle": "Persönliches Menü aufrufen",
 	"citizen-search-toggle": "Suche aufrufen",

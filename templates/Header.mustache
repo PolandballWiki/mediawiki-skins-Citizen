@@ -1,17 +1,29 @@
- {{!
- 	string link-mainpage link to the main page
-	string msg-citizen-drawer-toggle The label used by the drawer button
+{{!
+     string link-mainpage link to the main page
+    string msg-citizen-drawer-toggle The label used by the drawer button
 }}
-<header class="mw-header citizen-header">
-	{{>Header__logo}}
-	{{#data-search-box}}{{>Search}}{{/data-search-box}}
-	{{>Drawer}}
-	<div class="citizen-header__inner">
-		<div class="citizen-header__start"></div>
-		<div class="citizen-header__end">
-			{{>Preferences}}
-			{{#data-portlets.data-notifications}}{{>Menu}}{{/data-portlets.data-notifications}}
-			{{>UserMenu}}
-		</div>
-	</div>
+<header class="mw-header citizen-header steller-header">
+    {{>Header__logo}}
+    <div class="citizen-drawer__siteinfo steller-header-siteinfo">
+        {{>Wordmark}}
+        {{#data-site-stats}}{{>SiteStats}}{{/data-site-stats}}
+    </div>
+    <div class="steller-header-search-buttons">
+        {{#data-search-box}}{{>Search}}{{/data-search-box}}
+        {{>Drawer}}
+		{{>StellerCollapse}}
+    </div>
+    <div id="citizen-nav__card" class="citizen-nav steller-header-nav">
+        {{#data-main-menu}}
+            {{>StellerHeaderNav}}
+        {{/data-main-menu}}
+    </div>
+    <div class="citizen-header__inner steller-header-inner">
+        <div class="citizen-header__start"></div>
+        <div class="citizen-header__end">
+            {{>Preferences}}
+            {{#data-portlets.data-notifications}}{{>Menu}}{{/data-portlets.data-notifications}}
+            {{>UserMenu}}
+        </div>
+    </div>
 </header>

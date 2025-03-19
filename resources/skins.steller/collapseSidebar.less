@@ -1,0 +1,88 @@
+.mw-header {
+    transition: width 0.5s ease;  // Animación de ancho, más lenta
+    width: var(--header-size);  // Ancho inicial
+}
+
+// Estilos para el cuerpo cuando el header está colapsado
+body.collapsed {
+    --header-size: 3.5rem;  // Cambiar a 3.5rem cuando esté colapsado
+}
+
+// Elementos dentro del header cuando está colapsado
+.citizen-header.collapsed .citizen-drawer__siteinfo,
+.citizen-header.collapsed .steller-header-siteinfo,
+.citizen-header.collapsed .steller-header-nav {
+    visibility: hidden;  // Ocultar pero mantener en el flujo del documento
+    pointer-events: none; // Evitar la interacción
+}
+
+// Estilos generales para el header expandido (cuando no está colapsado)
+.steller-header {
+    --header-button-size: calc(3.5rem - var(--space-xs) * 2);
+}
+
+.citizen-header:not(.collapsed) {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "steller-logo" "steller-logo"
+        "steller-siteinfo" "steller-siteinfo"
+        "steller-search" "steller-search"
+        "steller-nav" "steller-nav"
+        "steller-echo" "steller-echo";
+    gap: 5px;
+}
+
+// Media query para el logo en pantallas grandes
+@media screen and (min-width: 640px) {
+    .mw-logo-wordmark:not(.collapsed) {
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+    
+    .citizen-header {
+        width: var(--header-size);  // Usamos la variable --header-size para el ancho
+    }
+}
+
+// Estilos para los botones cuando no está colapsado
+.citizen-header__button:not(.collapsed) {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 4em;
+    border-radius: var(--border-radius-base);
+    contain: strict;
+}
+
+// Estilos para el logo cuando no está colapsado
+.citizen-header__logo img:not(.collapsed) {
+    width: 90%;
+    height: 5em;
+    object-fit: contain;
+}
+
+.steller-header__logo:not(.collapsed) {
+    grid-area: steller-logo;
+}
+.steller-header-search-buttons:not(.collapsed) {
+    grid-area: steller-search;
+    display: grid; // Activamos el grid
+    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); // Adaptable según el tamaño
+    gap: 0.5rem; // Espacio entre los elementos
+    max-height: 1em;
+    transition: all 0.3s;
+}
+
+.steller-header-siteinfo:not(.collapsed) {
+    grid-area: steller-siteinfo;
+}
+.steller-header-nav:not(.collapsed) {
+    grid-area: steller-nav;
+}
+.steller-header-inner:not(.collapsed) {
+    grid-area: steller-echo;
+    overflow: hidden;
+    transition: all 0.3s;
+}

@@ -407,6 +407,7 @@
 		"citizen": {
 			"+codex-styles": "skinStyles/codex/codex.styles.less",
 			"+steller-styles": "resources/skins.steller/skin_steller.less",
+			"+steller-collapseSidebar-styles": "resources/skins.steller/collapseSidebar.less",
 			"+ext.AccountInfo.special": "skinStyles/extensions/AccountInfo/ext.AccountInfo.special.less",
 			"+ext.advancedSearch.initialstyles": "skinStyles/extensions/AdvancedSearch/ext.advancedSearch.initialstyles.less",
 			"+ext.advancedSearch.styles": "skinStyles/extensions/AdvancedSearch/ext.advancedSearch.styles.less",

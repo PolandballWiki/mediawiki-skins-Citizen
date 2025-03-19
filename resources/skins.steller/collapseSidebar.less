@@ -1,88 +1,195 @@
-.mw-header {
-    transition: width 0.5s ease;  // Animación de ancho, más lenta
-    width: var(--header-size);  // Ancho inicial
+// ----------------------------------------
+// Styles for Desktop and Larger Screens
+// ----------------------------------------
+
+// Styles for Tablet and Mobile
+@media screen and (max-width: @max-width-breakpoint-tablet) {
+    .steller-header {
+        --header-button-size: calc(3.5rem - var(--space-xs) * 2);
+    }
+    // Hide navigation and site info on smaller screens
+    .steller-header-nav,
+    .steller-header-siteinfo {
+        display: none !important; // Completely hide elements
+    }
 }
 
-// Estilos para el cuerpo cuando el header está colapsado
-body.collapsed {
-    --header-size: 3.5rem;  // Cambiar a 3.5rem cuando esté colapsado
-}
+@media screen and (min-width: @min-width-breakpoint-desktop) {
+    // Header styles
+    .mw-header {
+        transition: width 0.5s ease;  // Smooth width transition
+        width: var(--header-size);    // Initial width
+    }
 
-// Elementos dentro del header cuando está colapsado
-.citizen-header.collapsed .citizen-drawer__siteinfo,
-.citizen-header.collapsed .steller-header-siteinfo,
-.citizen-header.collapsed .steller-header-nav {
-    visibility: hidden;  // Ocultar pero mantener en el flujo del documento
-    pointer-events: none; // Evitar la interacción
-}
+        // Body styles when the header is collapsed
+        body.collapsed {
+            --header-size: 3.5rem;  // Reduced header size when collapsed
+        }
+        body {
+        --header-size: 12rem;
+        }
 
-// Estilos generales para el header expandido (cuando no está colapsado)
-.steller-header {
-    --header-button-size: calc(3.5rem - var(--space-xs) * 2);
-}
-
-.citizen-header:not(.collapsed) {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: auto;
-    grid-template-areas: 
-        "steller-logo" "steller-logo"
-        "steller-siteinfo" "steller-siteinfo"
-        "steller-search" "steller-search"
-        "steller-nav" "steller-nav"
-        "steller-echo" "steller-echo";
-    gap: 5px;
-}
-
-// Media query para el logo en pantallas grandes
-@media screen and (min-width: 640px) {
-    .mw-logo-wordmark:not(.collapsed) {
-        font-size: 1.5rem;
-        white-space: nowrap;
+    .steller-header-siteinfo .citizen-siteStats { justify-content: center }
+    
+    // Collapsed header elements
+    .citizen-header.collapsed .citizen-drawer__siteinfo,
+    .citizen-header.collapsed .steller-header-siteinfo,
+    .citizen-header.collapsed .steller-header-nav {
+        visibility: hidden;    // Hide but keep in document flow
+        pointer-events: none;  // Disable interaction
     }
     
+
+    // General header styles when expanded
+    .steller-header {
+        --header-button-size: calc(3.5rem - var(--space-xs) * 2); // Button size calculation
+    }
+
+    .citizen-header:not(.collapsed) {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "steller-logo" "steller-logo"
+            "steller-siteinfo" "steller-siteinfo"
+            "steller-search" "steller-search"
+            "steller-nav" "steller-nav"
+            "steller-echo" "steller-echo";
+        gap: 5px; // Spacing between grid items
+    }
+
+    // Logo styles
+    .steller-header .mw-logo-wordmark:not(.collapsed) {
+        font-size: 1.2rem;
+        white-space: nowrap; // Prevent text wrapping
+        text-align: center;
+    }
+
     .citizen-header {
-        width: var(--header-size);  // Usamos la variable --header-size para el ancho
+        width: var(--header-size); // Use header size variable for width
+    }
+
+    // Button styles
+    .citizen-header__button:not(.collapsed) {
+        width: auto;
+        height: 4em;
+        border-radius: var(--border-radius-base);
+    }
+
+    // Logo image styles
+    .citizen-header__logo img:not(.collapsed) {
+        width: auto;
+        height: auto;
+        object-fit: contain; // Maintain aspect ratio
+    }
+
+    .steller-header__logo:not(.collapsed) {
+        grid-area: steller-logo; // Assign to grid area
+    }
+
+    .expanded {
+        
+     .citizen-search-button {
+         grid-area: steller-search;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border-radius: var(--border-radius-pill);
+        cursor: pointer;
+        font-size: var(--font-size-small);
+        font-weight: var(--font-weight-medium);
+        text-align: center;
+        padding: 2px;
+    }
+    .steller-header #citizen-search-details, .citizen-search,.citizen-search .citizen-dropdown-summary {
+        width: 95% !important;
+        position: absolute;
+        margin-bottom: 11%;
+        margin-left: 2%;
+        border-radius: var(--border-radius-pill);
+    }
+    .citizen-search .citizen-dropdown-summary {
+        border: 1px solid var(--border-color-base);
+    }
+    .citizen-search .citizen-dropdown-summary .citizen-ui-icon {
+        margin-right: 5rem;
+    }
+    }
+    .collapsed .citizen-search-button > span{
+        display: none;
+    }
+    // Search button styles
+    .steller-header-search-buttons:not(.collapsed) {
+       
+        display: grid; // Enable grid layout
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); // Responsive layout
+        gap: 0.5rem; // Spacing between elements
+        max-height: 1em;
+        transition: all 0.3s; // Smooth transition
+    }
+
+    // Site info styles
+    .steller-header-siteinfo:not(.collapsed) {
+        grid-area: steller-siteinfo;
+    }
+
+/* Estilos para la barra de navegación */
+.steller-header-nav {
+    grid-area: steller-nav;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    max-width: fit-content;
+    opacity: 1;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+/* Estado colapsado */
+body.collapsed .steller-header-nav {
+    opacity: 0;
+    max-height: 0;
+    pointer-events: none; /* Evita la interacción mientras está oculto */
+}
+
+/* Botón de alternancia del encabezado */
+.steller-toggle-header .citizen-ui-icon {
+    transition: transform 0.3s ease;
+    transform: rotate(90deg);
+}
+
+.citizen-drawer {
+    display: none;
+}
+
+/* Estado expandido */
+.expanded .steller-toggle-header {
+    --header-button-size: calc(3rem - var(--space-xs)* 2);
+    position: absolute;
+    top: 15%; 
+    left: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: var(--color-surface-0);
+    border: var(--border-width-base) solid var(--border-color-base);
+    border-radius: var(--border-radius-medium) !important;
+    padding: 0 !important;
+    cursor: pointer;
+    transition: transform 0.3s ease;      
+}
+    
+body.expanded .steller-toggle-header .citizen-ui-icon {
+    transform: rotate(270deg);
+}
+
+    // Inner header styles
+    .steller-header-inner:not(.collapsed) {
+        grid-area: steller-echo;
+        overflow: hidden;
+        transition: all 0.3s; // Smooth transition
     }
 }
-
-// Estilos para los botones cuando no está colapsado
-.citizen-header__button:not(.collapsed) {
-    display: grid;
-    place-items: center;
-    width: 100%;
-    height: 4em;
-    border-radius: var(--border-radius-base);
-    contain: strict;
-}
-
-// Estilos para el logo cuando no está colapsado
-.citizen-header__logo img:not(.collapsed) {
-    width: 90%;
-    height: 5em;
-    object-fit: contain;
-}
-
-.steller-header__logo:not(.collapsed) {
-    grid-area: steller-logo;
-}
-.steller-header-search-buttons:not(.collapsed) {
-    grid-area: steller-search;
-    display: grid; // Activamos el grid
-    grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); // Adaptable según el tamaño
-    gap: 0.5rem; // Espacio entre los elementos
-    max-height: 1em;
-    transition: all 0.3s;
-}
-
-.steller-header-siteinfo:not(.collapsed) {
-    grid-area: steller-siteinfo;
-}
-.steller-header-nav:not(.collapsed) {
-    grid-area: steller-nav;
-}
-.steller-header-inner:not(.collapsed) {
-    grid-area: steller-echo;
-    overflow: hidden;
-    transition: all 0.3s;
+.citizen-menu .mw-list-item a {
+    padding-inline: 12px; 
 }

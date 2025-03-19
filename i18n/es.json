@@ -14,6 +14,7 @@
 	"citizen.css": "/* Todo CSS colocado en esta página será cargado para los usuarios que usen la apariencia \"Steller\" */",
 	"citizen.js": "/* Todo código JavaScript escrito aquí se cargará para todos los usuarios de la apariencia Steller */",
 	"citizen-drawer-toggle": "Menú alternativo",
+	"citizen-collapse-toggle": "Expandir/Contraer",
 	"citizen-usermenu-toggle": "Menú alternativo personal",
 	"citizen-search-toggle": "Búsqueda alternativa",
 	"citizen-search-keyhint-exit": "Salir de la búsqueda",

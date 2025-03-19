@@ -8,11 +8,12 @@
         {{>Wordmark}}
         {{#data-site-stats}}{{>SiteStats}}{{/data-site-stats}}
     </div>
-    <div class="steller-header-search-buttons">
-        {{#data-search-box}}{{>Search}}{{/data-search-box}}
+    <div class="citizen-search-button">
+        {{#data-search-box}}{{>Search}}
+        <span>{{msg-search}}</span>{{/data-search-box}}
+    </div>
         {{>Drawer}}
 		{{>StellerCollapse}}
-    </div>
     <div id="citizen-nav__card" class="citizen-nav steller-header-nav">
         {{#data-main-menu}}
             {{>StellerHeaderNav}}

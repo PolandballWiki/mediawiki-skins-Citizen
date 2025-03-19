@@ -287,6 +287,7 @@
 					"callback": "MediaWiki\\Skins\\Citizen\\Hooks\\ResourceLoaderHooks::getCitizenPreferencesResourceLoaderConfig"
 				},
 				"resources/skins.citizen.preferences/addPortlet.polyfill.js",
+				"resources/skins.citizen.preferences/collapseSidebar.js",
 				"resources/skins.citizen.preferences/clientPreferences.js",
 				"resources/skins.citizen.preferences/clientPreferences.json",
 				"resources/skins.citizen.preferences/clientPrefs.polyfill.js"
@@ -316,7 +317,8 @@
 			],
 			"dependencies": [
 				"mediawiki.storage",
-				"mediawiki.util"
+				"mediawiki.util",
+				"mediawiki.cookie"
 			],
 			"targets": [
 				"desktop",

@@ -81,193 +81,199 @@
 // ----------------------------------------
 
 // Styles for Tablet and Mobile
-@media screen and (max-width: @max-width-breakpoint-tablet) {
-    .steller-header {
-        --header-button-size: calc(3.5rem - var(--space-xs) * 2);
-    }
-    // Hide navigation and site info on smaller screens
-    .steller-header-nav,
-    .steller-header-siteinfo {
-        display: none !important; // Completely hide elements
-    }
+@media screen and ( max-width: @max-width-breakpoint-tablet ) {
+	.steller-header {
+		--header-button-size: calc( 3.5rem - var( --space-xs ) * 2 );
+	}
+	// Hide navigation and site info on smaller screens
+	.steller-header-nav,
+	.steller-header-siteinfo {
+		display: none !important; // Completely hide elements
+	}
 }
 
-@media screen and (min-width: @min-width-breakpoint-desktop) {
-    // Header styles
-    .mw-header {
-        transition: width 0.5s ease;  // Smooth width transition
-        width: var(--header-size);    // Initial width
-    }
+@media screen and ( min-width: @min-width-breakpoint-desktop ) {
+	// Header styles
+	.mw-header {
+		width: var( --header-size );    // Initial width
+		transition: width 0.5s ease;  // Smooth width transition
+	}
 
-        // Body styles when the header is collapsed
-        body.collapsed {
-            --header-size: 3.5rem;  // Reduced header size when collapsed
-        }
-        body {
-        --header-size: 12rem;
-        }
+	// Body styles when the header is collapsed
+	body.collapsed {
+		--header-size: 3.5rem;  // Reduced header size when collapsed
+	}
 
-    .steller-header-siteinfo .citizen-siteStats { justify-content: center }
-    
-    // Collapsed header elements
-    .citizen-header.collapsed .citizen-drawer__siteinfo,
-    .citizen-header.collapsed .steller-header-siteinfo,
-    .citizen-header.collapsed .steller-header-nav {
-        visibility: hidden;    // Hide but keep in document flow
-        pointer-events: none;  // Disable interaction
-    }
-    
+	body {
+		--header-size: 12rem;
+	}
 
-    // General header styles when expanded
-    .steller-header {
-        --header-button-size: calc(3.5rem - var(--space-xs) * 2); // Button size calculation
-    }
+	.steller-header-siteinfo .citizen-siteStats {
+ justify-content: center; }
 
-    .citizen-header:not(.collapsed) {
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-        grid-template-rows: auto;
-        grid-template-areas: 
-            "steller-logo" "steller-logo"
-            "steller-siteinfo" "steller-siteinfo"
-            "steller-search" "steller-search"
-            "steller-nav" "steller-nav"
-            "steller-echo" "steller-echo";
-        gap: 5px; // Spacing between grid items
-    }
+	// Collapsed header elements
+	.citizen-header.collapsed .citizen-drawer__siteinfo,
+	.citizen-header.collapsed .steller-header-siteinfo,
+	.citizen-header.collapsed .steller-header-nav {
+		pointer-events: none;  // Disable interaction
+		visibility: hidden;    // Hide but keep in document flow
+	}
 
-    // Logo styles
-    .steller-header .mw-logo-wordmark:not(.collapsed) {
-        font-size: 1.2rem;
-        white-space: nowrap; // Prevent text wrapping
-        text-align: center;
-    }
 
-    .citizen-header {
-        width: var(--header-size); // Use header size variable for width
-    }
+	// General header styles when expanded
+	.steller-header {
+		--header-button-size: calc( 3.5rem - var( --space-xs ) * 2 ); // Button size calculation
+	}
 
-    // Button styles
-    .citizen-header__button:not(.collapsed) {
-        width: auto;
-        height: 4em;
-        border-radius: var(--border-radius-base);
-    }
+	.citizen-header:not( .collapsed ) {
+		display: grid;
+		grid-template-areas:
+ 'steller-logo' 'steller-logo'
+			'steller-siteinfo' 'steller-siteinfo'
+			'steller-search' 'steller-search'
+			'steller-nav' 'steller-nav'
+			'steller-echo' 'steller-echo';
+		grid-template-rows: auto;
+		grid-template-columns: repeat( 2, auto );
+		gap: 5px; // Spacing between grid items
+	}
 
-    // Logo image styles
-    .citizen-header__logo img:not(.collapsed) {
-        width: auto;
-        height: auto;
-        object-fit: contain; // Maintain aspect ratio
-    }
+	// Logo styles
+	.steller-header .mw-logo-wordmark:not( .collapsed ) {
+		font-size: 1.2rem;
+		text-align: center;
+		white-space: nowrap; // Prevent text wrapping
+	}
 
-    .steller-header__logo:not(.collapsed) {
-        grid-area: steller-logo; // Assign to grid area
-    }
+	.citizen-header {
+		width: var( --header-size ); // Use header size variable for width
+	}
 
-    .expanded {
-        
-     .citizen-search-button {
-         grid-area: steller-search;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        border-radius: var(--border-radius-pill);
-        cursor: pointer;
-        font-size: var(--font-size-small);
-        font-weight: var(--font-weight-medium);
-        text-align: center;
-        padding: 2px;
-    }
-    .steller-header #citizen-search-details, .citizen-search,.citizen-search .citizen-dropdown-summary {
-        width: 95% !important;
-        position: absolute;
-        margin-bottom: 11%;
-        margin-left: 2%;
-        border-radius: var(--border-radius-pill);
-    }
-    .citizen-search .citizen-dropdown-summary {
-        border: 1px solid var(--border-color-base);
-    }
-    .citizen-search .citizen-dropdown-summary .citizen-ui-icon {
-        margin-right: 5rem;
-    }
-    }
-    .collapsed .citizen-search-button > span{
-        display: none;
-    }
-    // Search button styles
-    .steller-header-search-buttons:not(.collapsed) {
-       
-        display: grid; // Enable grid layout
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); // Responsive layout
-        gap: 0.5rem; // Spacing between elements
-        max-height: 1em;
-        transition: all 0.3s; // Smooth transition
-    }
+	// Button styles
+	.citizen-header__button:not( .collapsed ) {
+		width: auto;
+		height: 4em;
+		border-radius: var( --border-radius-base );
+	}
 
-    // Site info styles
-    .steller-header-siteinfo:not(.collapsed) {
-        grid-area: steller-siteinfo;
-    }
+	// Logo image styles
+	.citizen-header__logo img:not( .collapsed ) {
+		width: auto;
+		height: auto;
+		object-fit: contain; // Maintain aspect ratio
+	}
 
-/* Estilos para la barra de navegación */
-.steller-header-nav {
-    grid-area: steller-nav;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    max-height: 100%;
-    max-width: fit-content;
-    opacity: 1;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
+	.steller-header__logo:not( .collapsed ) {
+		grid-area: steller-logo; // Assign to grid area
+	}
+
+	.expanded {
+		.citizen-search-button {
+			display: flex;
+			grid-area: steller-search;
+			align-items: center;
+			justify-content: center;
+			padding: 2px;
+			font-size: var( --font-size-small );
+			font-weight: var( --font-weight-medium );
+			text-align: center;
+			cursor: pointer;
+			border-radius: var( --border-radius-pill );
+		}
+
+		.steller-header #citizen-search-details,
+ .citizen-search,
+.citizen-search .citizen-dropdown-summary {
+			position: absolute;
+			width: 95% !important;
+			margin-bottom: 11%;
+			margin-left: 2%;
+			border-radius: var( --border-radius-pill );
+		}
+
+		.citizen-search .citizen-dropdown-summary {
+			border: 1px solid var( --border-color-base );
+		}
+
+		.citizen-search .citizen-dropdown-summary .citizen-ui-icon {
+			margin-right: 5rem;
+		}
+	}
+
+	.collapsed .citizen-search-button > span {
+		display: none;
+	}
+	// Search button styles
+	.steller-header-search-buttons:not( .collapsed ) {
+		display: grid; // Enable grid layout
+		grid-template-columns: repeat( auto-fit, minmax( 30px, 1fr ) ); // Responsive layout
+		gap: 0.5rem; // Spacing between elements
+		max-height: 1em;
+		transition: all 0.3s; // Smooth transition
+	}
+
+	// Site info styles
+	.steller-header-siteinfo:not( .collapsed ) {
+		grid-area: steller-siteinfo;
+	}
+
+	/* Estilos para la barra de navegación */
+	.steller-header-nav {
+		display: flex;
+		flex-direction: column;
+		grid-area: steller-nav;
+		max-width: fit-content;
+		max-height: 100%;
+		overflow-y: auto;
+		opacity: 1;
+		transition: opacity 0.3s ease, max-height 0.3s ease;
+	}
+
+	/* Estado colapsado */
+	body.collapsed .steller-header-nav {
+		max-height: 0;
+		pointer-events: none; /* Evita la interacción mientras está oculto */
+		opacity: 0;
+	}
+
+	/* Botón de alternancia del encabezado */
+	.steller-toggle-header .citizen-ui-icon {
+		transition: transform 0.3s ease;
+		transform: rotate( 90deg );
+	}
+
+	.citizen-drawer {
+		display: none;
+	}
+
+	/* Estado expandido */
+	.expanded .steller-toggle-header {
+		--header-button-size: calc( 3rem - var( --space-xs ) * 2 );
+		position: absolute;
+		top: 15%;
+		left: 100%;
+		z-index: 10;
+		padding: 0 !important;
+		cursor: pointer;
+		background-color: var( --color-surface-0 );
+		border: var( --border-width-base ) solid var( --border-color-base );
+		border-radius: var( --border-radius-medium ) !important;
+		transition: transform 0.3s ease;
+		transform: translate( -50%, -50% );
+	}
+
+	body.expanded .steller-toggle-header .citizen-ui-icon {
+		transform: rotate( 270deg );
+	}
+
+	// Inner header styles
+	.steller-header-inner:not( .collapsed ) {
+		grid-area: steller-echo;
+		overflow: hidden;
+		transition: all 0.3s; // Smooth transition
+	}
 }
 
-/* Estado colapsado */
-body.collapsed .steller-header-nav {
-    opacity: 0;
-    max-height: 0;
-    pointer-events: none; /* Evita la interacción mientras está oculto */
-}
-
-/* Botón de alternancia del encabezado */
-.steller-toggle-header .citizen-ui-icon {
-    transition: transform 0.3s ease;
-    transform: rotate(90deg);
-}
-
-.citizen-drawer {
-    display: none;
-}
-
-/* Estado expandido */
-.expanded .steller-toggle-header {
-    --header-button-size: calc(3rem - var(--space-xs)* 2);
-    position: absolute;
-    top: 15%; 
-    left: 100%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    background-color: var(--color-surface-0);
-    border: var(--border-width-base) solid var(--border-color-base);
-    border-radius: var(--border-radius-medium) !important;
-    padding: 0 !important;
-    cursor: pointer;
-    transition: transform 0.3s ease;      
-}
-    
-body.expanded .steller-toggle-header .citizen-ui-icon {
-    transform: rotate(270deg);
-}
-
-    // Inner header styles
-    .steller-header-inner:not(.collapsed) {
-        grid-area: steller-echo;
-        overflow: hidden;
-        transition: all 0.3s; // Smooth transition
-    }
-}
 .citizen-menu .mw-list-item a {
-    padding-inline: 12px; 
+	padding-inline: 12px;
 }

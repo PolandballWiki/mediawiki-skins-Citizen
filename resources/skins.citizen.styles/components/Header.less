@@ -23,7 +23,7 @@
 			border-bottom: 0;
 
 			a img,
- a {
+			a {
 				width: auto;
 				height: 7em;
 				text-decoration: none;
@@ -56,8 +56,8 @@
 		}
 
 		.steller-header #citizen-search-details,
- .citizen-search,
-.citizen-search .citizen-dropdown-summary {
+		.citizen-search,
+		.citizen-search .citizen-dropdown-summary {
 			position: absolute;
 			width: 95% !important;
 			margin-bottom: 21%;
@@ -81,7 +81,7 @@
 
 // Citizen/Steller
 .citizen-header,
- .steller-header {
+.steller-header {
 	--header-icon-size: ~'calc( var( --header-button-size ) / 2 )';
 	--header-button-size: calc( 3.5rem - var( --space-xs ) * 2 );
 	--header-direction: row;
@@ -183,10 +183,10 @@
 		grid-area: steller-nav;
 		max-width: fit-content;
 		max-height: 100%;
+		max-height: 60vh;
 		overflow: hidden auto;
 		opacity: 1;
 		transition: opacity 0.3s ease, max-height 0.3s ease;
-		max-height: 60vh;
 
 		// align items
 		.citizen-menu .mw-list-item a {

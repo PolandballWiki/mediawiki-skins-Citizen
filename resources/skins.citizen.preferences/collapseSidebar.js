@@ -20,32 +20,34 @@
 	const collapsedHeaderSize = '3.5rem';
 	const transitionDuration = 500; // Duración de la transición en milisegundos
 
-	function applyCollapseState( isCollapsed ) {
-		if ( isCollapsed ) {
-			$( 'body' ).removeClass( expandedClass ).addClass( collapsedClass );
-			$citizenHeader.addClass( collapsedClass ).css( '--header-size', collapsedHeaderSize );
-			$siteInfo.css( {
-				opacity: '0',
-				visibility: 'hidden'
-			} );
-			setTimeout( () => {
-				$siteInfo.css( 'display', 'none' );
-			}, transitionDuration );
-		} else {
-			$( 'body' ).removeClass( collapsedClass ).addClass( expandedClass );
-			$citizenHeader.removeClass( collapsedClass ).css( '--header-size', expandedHeaderSize );
-			$siteInfo.css( 'display', 'flex' );
-			setTimeout( () => {
-				$siteInfo.css( {
-					opacity: '1',
-					visibility: 'visible'
-				} );
-			}, 10 ); // Pequeño retraso para permitir que el navegador procese el cambio de display
-		}
-	}
-
 	mw.loader.using( 'mediawiki.cookie' ).then( () => {
-		if ( window.matchMedia( '(min-width: 640px)' ).matches ) {
+		// Solo aplicar la lógica de colapso en pantallas de escritorio
+		if ( window.matchMedia( '(min-width: 1120px)' ).matches ) {
+			// Función para aplicar el estado colapsado o expandido
+			function applyCollapseState( isCollapsed ) {
+				if ( isCollapsed ) {
+					$( 'body' ).removeClass( expandedClass ).addClass( collapsedClass );
+					$citizenHeader.addClass( collapsedClass ).css( '--header-size', collapsedHeaderSize );
+					$siteInfo.css( {
+						opacity: '0',
+						visibility: 'hidden'
+					} );
+					setTimeout( () => {
+						$siteInfo.css( 'display', 'none' );
+					}, transitionDuration );
+				} else {
+					$( 'body' ).removeClass( collapsedClass ).addClass( expandedClass );
+					$citizenHeader.removeClass( collapsedClass ).css( '--header-size', expandedHeaderSize );
+					$siteInfo.css( 'display', 'flex' );
+					setTimeout( () => {
+						$siteInfo.css( {
+							opacity: '1',
+							visibility: 'visible'
+						} );
+					}, 10 ); // Pequeño retraso para permitir que el navegador procese el cambio de display
+				}
+			}
+
 			// Get the initial state from the cookie
 			let isCollapsed = mw.cookie.get( cookieName ) === 'collapsed';
 			applyCollapseState( isCollapsed );

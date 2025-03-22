@@ -1,99 +1,15 @@
-// Structure Collapsed/Expanded
-.collapsed {
-	.citizen-header {
-		.citizen-drawer__siteinfo,
-		.steller-header-siteinfo,
-		.steller-header-nav {
-			pointer-events: none;  // Disable interaction
-			visibility: hidden;    // Hide but keep in document flow
-		}
-
-		.citizen-search-button > span {
-			display: none;
-		}
-	}
-}
-
-// Estilos para cuando está Expandido
-.expanded {
-	.citizen-header {
-		gap: 1.2em;
-		// Sitelogo
-		.citizen-header__logo {
-			border-bottom: 0;
-
-			a img,
- a {
-				width: auto;
-				height: 7em;
-				text-decoration: none;
-				transition-property: transform, opacity, width, height;
-			}
-		}
-		// Site Stats
-		.citizen-siteStats {
-			justify-content: center;
-			padding-bottom: 1rem;
-			border-bottom: var( --border-width-base ) solid var( --border-color-base );
-			// No User Stats
-			#citizen-siteStats__item--users {
-				display: none;
-			}
-		}
-		// Search Section
-		// button.search
-		.citizen-search-button {
-			display: flex;
-			grid-area: steller-search;
-			align-items: center;
-			justify-content: center;
-			padding: 2px;
-			font-size: var( --font-size-small );
-			font-weight: var( --font-weight-medium );
-			text-align: center;
-			cursor: pointer;
-			border-radius: var( --border-radius-pill );
-		}
-
-		.steller-header #citizen-search-details,
- .citizen-search,
-.citizen-search .citizen-dropdown-summary {
-			position: absolute;
-			width: 95% !important;
-			margin-bottom: 21%;
-			margin-left: 2%;
-			border-radius: var( --border-radius-pill );
-		}
-
-		.citizen-search .citizen-dropdown-summary {
-			border: 1px solid var( --border-color-base );
-		}
-
-		.citizen-search .citizen-dropdown-summary .citizen-ui-icon {
-			margin-right: 5rem;
-		}
-
-		.citizen-drawer {
-			display: none;
-		}
-	}
-}
-
 // Citizen/Steller
 .citizen-header,
  .steller-header {
-	--header-icon-size: ~'calc( var( --header-button-size ) / 2 )';
-	--header-button-size: calc( 3.5rem - var( --space-xs ) * 2 );
-	--header-direction: row;
+     
 	position: fixed;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: @z-index-fixed;
+	z-index: 50; // @z-index-fixed;
 	display: flex;
 	flex-direction: var( --header-direction );
 	gap: var( --space-xxs );
-	width: var( --header-size );    // Initial width
 	padding: var( --space-xs );
 	background-color: var( --color-surface-0 );
 	border-top: var( --border-width-base ) solid var( --border-color-base );
@@ -175,30 +91,7 @@
 		}
 	}
 
-	// Sidebar Nav
-	/* Estilos para la barra de navegación */
-	.steller-header-nav {
-		display: flex;
-		flex-direction: column;
-		grid-area: steller-nav;
-		max-width: fit-content;
-		max-height: 100%;
-		overflow: hidden auto;
-		opacity: 1;
-		transition: opacity 0.3s ease, max-height 0.3s ease;
-		max-height: 60vh;
 
-		// align items
-		.citizen-menu .mw-list-item a {
-			padding-inline: 12px;
-		}
-	}
-	// collapsed.state
-	body.collapsed .steller-header-nav {
-		max-height: 0;
-		pointer-events: none;
-		opacity: 0;
-	}
 
 	&__inner {
 		display: flex;
@@ -256,7 +149,94 @@
 	}
 }
 
-// Inline Notifications hack
+.client-nojs {
+	// Hide preferences button completely when JS is not supported
+	// Since it won't do anything
+	.citizen-preferences {
+		display: none;
+	}
+}
+
+// Reset hover styles if it is a touch device
+// This is dumb but hover:hover overrides active states
+@media ( hover: none ) {
+	.citizen-header {
+		&__button {
+			&:hover {
+				background-color: transparent;
+
+				.citizen-header__buttonIcon {
+					opacity: var( --opacity-icon-base );
+				}
+			}
+		}
+	}
+}
+
+@media ( min-width: @min-width-breakpoint-desktop ) {
+	.citizen-header, .steller-header {
+		--header-direction: column;
+        --header-icon-size: ~'calc( var( --header-button-size ) / 2 )';
+	    --header-button-size: calc( 3.5rem - var( --space-xs ) * 2 );
+		top: 0;
+		right: unset;
+		left: 0;
+		border-top: 0;
+		border-right: var( --border-width-base ) solid var( --border-color-base );
+        width: var( --header-size );    // Initial width
+
+		&__logo {
+			padding: 0 0 var( --space-xs ) 0;
+			margin: var( --space-xxs ) 0;
+			border-right: 0;
+			border-bottom: var( --border-width-base ) solid var( --border-color-base );
+		}
+        
+     	// Sidebar Nav
+	/* Estilos para la barra de navegación */
+	.steller-header-nav {
+		display: flex;
+		flex-direction: column;
+		grid-area: steller-nav;
+		max-width: fit-content;
+		max-height: 100%;
+		overflow: hidden auto;
+		opacity: 1;
+		transition: opacity 0.3s ease, max-height 0.3s ease;
+		max-height: 60vh;
+		scrollbar-width: thin;
+    	scrollbar-color: var(--color-surface-2) transparent;
+
+		// align items
+		.citizen-menu .mw-list-item a {
+			padding-inline: 12px;
+		}
+	}
+	// collapsed.state
+	body.collapsed .steller-header-nav {
+		max-height: 0;
+		pointer-events: none;
+		opacity: 0;
+	}   
+	}
+    
+    // Structure Collapsed/Expanded
+.collapsed {
+	.citizen-header {
+		.citizen-drawer__siteinfo,
+		.steller-header-siteinfo,
+		.steller-header-nav {
+			pointer-events: none;  // Disable interaction
+			visibility: hidden;    // Hide but keep in document flow
+		}
+
+		.citizen-search-button > span {
+			display: none;
+		}
+	}
+}
+    
+    // Inline Notifications hack
 .expanded .citizen-header__end {
 	display: grid;
 	grid-template-areas: 'header-end-preferences header-end-userMenu header-end-echo';
@@ -302,47 +282,80 @@
 	padding: var( --space-xs ) var( --space-md ) !important;
 }
 
-.client-nojs {
-	// Hide preferences button completely when JS is not supported
-	// Since it won't do anything
-	.citizen-preferences {
-		display: none;
-	}
-}
-
-// Reset hover styles if it is a touch device
-// This is dumb but hover:hover overrides active states
-@media ( hover: none ) {
+// Styles for collapseSidebar.header
+// Estilos para cuando está Expandido
+.expanded {
 	.citizen-header {
-		&__button {
-			&:hover {
-				background-color: transparent;
+		gap: 1.2em;
+		// Sitelogo
+		.citizen-header__logo {
+			border-bottom: 0;
 
-				.citizen-header__buttonIcon {
-					opacity: var( --opacity-icon-base );
-				}
+			a img,
+ a {
+				width: auto;
+				height: 7em;
+				text-decoration: none;
+				transition-property: transform, opacity, width, height;
 			}
 		}
-	}
-}
-
-@media ( min-width: @min-width-breakpoint-desktop ) {
-	.citizen-header {
-		--header-direction: column;
-		top: 0;
-		right: unset;
-		left: 0;
-		border-top: 0;
-		border-right: var( --border-width-base ) solid var( --border-color-base );
-
-		&__logo {
-			padding: 0 0 var( --space-xs ) 0;
-			margin: var( --space-xxs ) 0;
-			border-right: 0;
+		// Site Stats
+		.citizen-siteStats {
+			justify-content: center;
+			padding-bottom: 1rem;
 			border-bottom: var( --border-width-base ) solid var( --border-color-base );
+			// No User Stats
+			#citizen-siteStats__item--users {
+				display: none;
+			}
 		}
-	}
+		// Search Section
+		// button.search
+		.citizen-search-button {
+			display: flex;
+			grid-area: steller-search;
+			align-items: center;
+			justify-content: center;
+			padding: 2px;
+			font-size: var( --font-size-small );
+			font-weight: var( --font-weight-medium );
+			text-align: center;
+			cursor: pointer;
+			border-radius: var( --border-radius-pill );
+		}
+
+		.steller-header #citizen-search-details,
+         .citizen-search,
+        .citizen-search .citizen-dropdown-summary {
+                position: absolute;
+                width: 95% !important;
+                margin-bottom: 21%;
+                margin-left: 2%;
+                border-radius: var( --border-radius-pill );
+            }
+
+            .citizen-search .citizen-dropdown-summary {
+                border: 1px solid var( --border-color-base );
+            }
+
+            .citizen-search .citizen-dropdown-summary .citizen-ui-icon {
+                margin-right: 5rem;
+            }
+
+            .citizen-drawer {
+                display: none;
+            }
+	   }
+    }   
 }
+
+
+@media ( max-width: @max-width-breakpoint-tablet ) { 
+    .citizen-nav, .citizen-search-button > span, .steller-toggle-header {
+        display: none !important;
+    }
+}
+
 // Body styles when the header is collapsed
 body.collapsed {
 	--header-size: 3.5rem;  // Reduced header size when collapsed

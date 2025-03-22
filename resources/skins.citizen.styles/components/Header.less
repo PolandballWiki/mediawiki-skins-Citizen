@@ -1,14 +1,90 @@
-.citizen-header {
+// Structure Collapsed/Expanded
+.collapsed {
+.citizen-header  {
+	.citizen-drawer__siteinfo,
+	.steller-header-siteinfo,
+	.steller-header-nav {
+		visibility: hidden;    // Hide but keep in document flow
+		pointer-events: none;  // Disable interaction
+	}
+	.citizen-search-button > span{
+		display: none;
+	}
+	}
+}
+
+// Estilos para cuando está Expandido
+.expanded {
+	.citizen-header {
+			gap: 1.2em;
+			// Sitelogo
+			.citizen-header__logo {
+				border-bottom: 0;
+				a img, a {
+					width: auto;
+					height: 7em;
+					text-decoration: none;
+					transition-property: transform, opacity, width, height;
+				}
+		}
+			// Site Stats
+			.citizen-siteStats {
+				justify-content: center;
+				border-bottom: var(--border-width-base) solid var(--border-color-base);
+				padding-bottom: 1rem;
+				// No User Stats
+				#citizen-siteStats__item--users {
+					display: none;
+				}
+			}
+			// Search Section
+			// button.search
+			.citizen-search-button {
+				grid-area: steller-search;
+			   display: flex;
+			   justify-content: center;
+			   align-items: center;
+			   
+			   border-radius: var(--border-radius-pill);
+			   cursor: pointer;
+			   font-size: var(--font-size-small);
+			   font-weight: var(--font-weight-medium);
+			   text-align: center;
+			   padding: 2px;
+		   }
+		   .steller-header #citizen-search-details, .citizen-search,.citizen-search .citizen-dropdown-summary {
+			   width: 95% !important;
+			   position: absolute;
+			   margin-bottom: 21%;
+			   margin-left: 2%;
+			   border-radius: var(--border-radius-pill);
+		   }
+		   .citizen-search .citizen-dropdown-summary {
+			   border: 1px solid var(--border-color-base);
+		   }
+		   .citizen-search .citizen-dropdown-summary .citizen-ui-icon {
+			   margin-right: 5rem;
+			}
+			.citizen-drawer {
+				display: none;
+			}
+		}
+	}
+
+// Citizen/Steller
+.citizen-header, .steller-header {
 	--header-icon-size: ~'calc( var( --header-button-size ) / 2 )';
-	--header-button-size: ~'calc( var( --header-size ) - var(  --space-xs ) * 2 )';
+	--header-button-size: calc(3.5rem - var(--space-xs) * 2);
 	--header-direction: row;
+	display: flex;
+	flex-direction: var( --header-direction );
 	position: fixed;
+	transition: width 0.5s ease;  // Smooth width transition
+	width: var(--header-size);    // Initial width
 	right: 0;
 	bottom: 0;
 	left: 0;
 	z-index: @z-index-fixed;
-	display: flex;
-	flex-direction: var( --header-direction );
 	gap: var( --space-xxs );
 	padding: var( --space-xs );
 	background-color: var( --color-surface-0 );
@@ -90,6 +166,31 @@
 		}
 	}
 
+	// Sidebar Nav
+	/* Estilos para la barra de navegación */
+	.steller-header-nav {
+		grid-area: steller-nav;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		max-height: 100%;
+		max-width: fit-content;
+		opacity: 1;
+		transition: opacity 0.3s ease, max-height 0.3s ease;
+		overflow-y: auto;
+		overflow-x: hidden;
+
+	// align items
+	.citizen-menu .mw-list-item a {
+    	padding-inline: 12px; 
+	}	
+}	// collapsed.state
+	body.collapsed .steller-header-nav {
+		opacity: 0;
+		max-height: 0;
+		pointer-events: none;
+	}
+
 	&__inner {
 		display: flex;
 		flex-grow: 1;
@@ -98,14 +199,14 @@
 		justify-content: space-between;
 		min-width: 0;
 		overflow-x: auto;
+		grid-area: steller-echo;
+        overflow: hidden;
+        transition: all 0.3s;
 	}
 
 	&__start,
 	&__end {
-		display: flex;
-		flex-shrink: 0; // let _inner handle the overflow
-		flex-direction: var( --header-direction );
-		gap: var( --space-xxs );
+
 
 		// Hide top-level menu header labels
 		> .citizen-menu > .citizen-menu__heading {
@@ -145,6 +246,47 @@
 			.sr-only;
 		}
 	}
+}
+
+// Inline Notifications hack
+.expanded .citizen-header__end {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "header-end-preferences header-end-userMenu header-end-echo" ;
+    overflow: hidden;
+    transition: all 0.3s;
+    gap: 4px;
+    .mw-portlet-notifications {
+        grid-area: header-end-echo;
+        display: inline-block !important;
+        width: 5rem;
+        max-height: 2rem;
+    }
+    .citizen-preferences {
+         grid-area: header-end-preferences;
+    }
+    .citizen-userMenu {
+         grid-area: header-end-userMenu;
+    }
+    #p-notifications ul {
+        width: 100%;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        #pt-notifications-alert {
+            grid-column: 1;
+        }
+        #pt-notifications-notice {
+            grid-column: 2;
+        }
+    }
+}
+// Fix incorrect padding
+#p-notifications ul li a {
+    padding: var(--space-xs) var(--space-md) !important;
+    justify-content: center;
 }
 
 .client-nojs {
@@ -188,3 +330,69 @@
 		}
 	}
 }
+// Body styles when the header is collapsed
+body.collapsed {
+    --header-size: 3.5rem;  // Reduced header size when collapsed
+}
+body {
+    --header-size: 12rem;
+}
+
+// Styles for Tablet and Mobile
+@media screen and (max-width: @max-width-breakpoint-tablet) {
+    .steller-header-nav,
+    .steller-header-siteinfo {
+        display: none !important; // Completely hide elements
+    }
+}
+@media screen and (min-width: @min-width-breakpoint-desktop) {
+	.citizen-drawer {
+   	 	display: none;
+	}
+}
+    
+// Button styles
+    .citizen-header__logo .citizen-header__button:not(.collapsed) {
+        width: auto;
+        border-radius: var(--border-radius-base);
+    }
+
+    .steller-header__logo:not(.collapsed) {
+        grid-area: steller-logo; // Assign to grid area
+    }
+
+
+    // Site info styles
+    .steller-header-siteinfo:not(.collapsed) {
+        grid-area: steller-siteinfo;
+    }
+
+
+/* Botón de alternancia del encabezado */
+.steller-toggle-header .citizen-ui-icon {
+    transition: transform 0.3s ease;
+    transform: rotate(90deg);
+}
+
+
+
+/* Estado expandido */
+.expanded .steller-toggle-header {
+    --header-button-size: calc(3rem - var(--space-xs)* 2);
+    position: absolute;
+    top: 15%; 
+    left: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: var(--color-surface-0);
+    border: var(--border-width-base) solid var(--border-color-base);
+    border-radius: var(--border-radius-medium) !important;
+    padding: 0 !important;
+    cursor: pointer;
+    transition: transform 0.3s ease;      
+}
+    
+body.expanded .steller-toggle-header .citizen-ui-icon {
+    transform: rotate(270deg);
+}
+

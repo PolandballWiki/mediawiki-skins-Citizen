@@ -55,19 +55,18 @@
 
 /* Steller Header Background */
 .citizen-header__background {
-
 	&::before {
-		content: "";
+		position: absolute;
+		position: fixed !important;
 		inset: 0;
-		background-image: var(--site-bg-image);
-		background-size: 100% auto;
 		width: @width-site-background;
 		height: @height-site-background;
+		content: '';
+		background-image: var( --site-bg-image );
 		background-repeat: @repeat-background;
 		background-position: 0 @position-background;
-		position: absolute;
+		background-size: 100% auto;
 		opacity: 0.7;
-		position: fixed !important;
-		mask-image: linear-gradient( var(--color-surface-0) 35%, transparent );
+		mask-image: linear-gradient( var( --color-surface-0 ) 35%, transparent );
 	}
 }

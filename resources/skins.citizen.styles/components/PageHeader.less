@@ -52,3 +52,22 @@
 		color: var( --color-subtle );
 	}
 }
+
+/* Steller Header Background */
+.citizen-header__background {
+
+	&::before {
+		content: "";
+		inset: 0;
+		background-image: var(--site-bg-image);
+		background-size: 100% auto;
+		width: @width-site-background;
+		height: @height-site-background;
+		background-repeat: @repeat-background;
+		background-position: 0 @position-background;
+		position: absolute;
+		opacity: 0.7;
+		position: fixed !important;
+		mask-image: linear-gradient( var(--color-surface-0) 35%, transparent );
+	}
+}

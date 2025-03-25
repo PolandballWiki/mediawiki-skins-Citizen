@@ -45,6 +45,14 @@
 @color-primary__s: 60%;
 @color-primary__l: 50%;
 
+
+.skin-citizen-dark {
+    --steller-header-bg: color-mix(in srgb, transparent, var(--color-surface-0));
+}
+.skin-citizen-light {
+    --steller-header-bg: var(--color-surface-0);
+}
+
 /*
  * Syntax highlight colors
  * Based on Material Theme Lighter
@@ -106,6 +114,28 @@
 @icon-size: 1.125rem; // 18px, TODO: Replace this var
 @icon-box-size: @icon-size + @icon-margin * 2;
 @icon-margin: 3px;
+
+
+/* Steller Styles */
+/* == Base background image == */
+@site-bg-image: var(--site-bg-image);
+@width-site-background: 100%;
+@height-site-background: var(--height-site-background);
+@position-background: var(--position-background);
+@repeat-background: var(--repeat-background);
+
+:root {
+    --height-site-background: 30vh;
+    --position-background: -40px;
+    --repeat-background: no-repeat;
+}
+/* = Base header background = */
+.skin-citizen-dark {
+    --steller-header-bg: color-mix(in srgb, transparent, var(--color-surface-0));
+}
+.skin-citizen-light {
+    --steller-header-bg: var(--color-surface-0);
+}
 
 /*
  * Legacy colors

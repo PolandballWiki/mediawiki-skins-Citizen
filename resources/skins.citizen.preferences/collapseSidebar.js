@@ -16,8 +16,6 @@
 	const cookieName = 'citizenSidebar';
 	const collapsedClass = 'collapsed';
 	const expandedClass = 'expanded';
-	const expandedHeaderSize = '12.5rem';
-	const collapsedHeaderSize = '3.5rem';
 	const transitionDuration = 500; // Duración de la transición en milisegundos
 
 	mw.loader.using( 'mediawiki.cookie' ).then( () => {
@@ -27,7 +25,6 @@
 			function applyCollapseState( isCollapsed ) {
 				if ( isCollapsed ) {
 					$( 'body' ).removeClass( expandedClass ).addClass( collapsedClass );
-					$citizenHeader.addClass( collapsedClass ).css( '--header-size', collapsedHeaderSize );
 					$siteInfo.css( {
 						opacity: '0',
 						visibility: 'hidden'
@@ -37,7 +34,6 @@
 					}, transitionDuration );
 				} else {
 					$( 'body' ).removeClass( collapsedClass ).addClass( expandedClass );
-					$citizenHeader.removeClass( collapsedClass ).css( '--header-size', expandedHeaderSize );
 					$siteInfo.css( 'display', 'flex' );
 					setTimeout( () => {
 						$siteInfo.css( {

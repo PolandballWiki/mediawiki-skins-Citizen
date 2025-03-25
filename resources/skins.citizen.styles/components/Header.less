@@ -1,11 +1,14 @@
 // Citizen/Steller
 .citizen-header,
 .steller-header {
+    --header-icon-size: ~'calc( var( --header-button-size ) / 2 )';
+	--header-button-size: ~'calc( var( --header-size ) - var(  --space-xs ) * 2 )';
+	--header-direction: row;
 	position: fixed;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 50; // @z-index-fixed;
+	z-index: @z-index-fixed;
 	display: flex;
 	flex-direction: var( --header-direction );
 	gap: var( --space-xxs );
@@ -345,14 +348,30 @@
 			}
 		}
 	}
+        // Button styles
+        .citizen-header__logo .citizen-header__button:not( .collapsed ) {
+            width: auto;
+            border-radius: var( --border-radius-base );
+    }
 }
 
 @media ( max-width: @max-width-breakpoint-tablet ) {
+   body {
+        --header-size: 3.5rem !important; // Temporal hack
+    }
 	.citizen-nav,
  .citizen-search-button > span,
  .steller-toggle-header {
 		display: none !important;
 	}
+    .citizen-header__end {
+        display: grid;
+        grid-template-areas: 'header-end-preferences header-end-userMenu header-end-echo';
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        gap: 4px;
+        overflow: hidden;
+    }
 }
 
 // Body styles when the header is collapsed
@@ -376,12 +395,6 @@ body {
 	.citizen-drawer {
 		display: none;
 	}
-}
-
-// Button styles
-.citizen-header__logo .citizen-header__button:not( .collapsed ) {
-	width: auto;
-	border-radius: var( --border-radius-base );
 }
 
 .steller-header__logo:not( .collapsed ) {

@@ -1,16 +1,33 @@
- {{!
- 	string link-mainpage link to the main page
-	string msg-citizen-drawer-toggle The label used by the drawer button
+{{!
+	string link-mainpage Link to the main page.
+	string msg-citizen-drawer-toggle Label for Citizen's drawer button.
 }}
-<header class="mw-header citizen-header">
+<header class="mw-header citizen-header steller-header">
 	{{>Header__logo}}
-	{{#data-search-box}}{{>Search}}{{/data-search-box}}
-	{{>Drawer}}
-	<div class="citizen-header__inner">
+
+	<div class="steller-header__siteinfo">
+		<div class="steller-header__wordmark">
+			{{msg-sitetitle}}
+		</div>
+
+		{{#data-site-stats}}
+			{{>SiteStats}}
+		{{/data-site-stats}}
+	</div>
+
+	{{#data-search-box}}
+		{{>Search}}
+	{{/data-search-box}}
+
+	{{>StellerSidebar}}
+
+	<div class="citizen-header__inner steller-header-inner">
 		<div class="citizen-header__start"></div>
 		<div class="citizen-header__end">
 			{{>Preferences}}
-			{{#data-notifications}}{{>Notifications}}{{/data-notifications}}
+			{{#data-notifications}}
+				{{>Notifications}}
+			{{/data-notifications}}
 			{{>UserMenu}}
 		</div>
 	</div>

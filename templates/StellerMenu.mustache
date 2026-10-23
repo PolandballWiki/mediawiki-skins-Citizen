@@ -1,0 +1,28 @@
+
+<nav
+	id="{{id}}"
+	class="citizen-menu steller-menu{{#class}} {{.}}{{/class}}"
+	{{#label}}aria-label="{{.}}"{{/label}}
+	{{{html-tooltip}}}
+	{{{html-userlangattributes}}}
+>
+	{{#label}}
+	<details class="steller-menu__details" open>
+		<summary class="citizen-menu__heading steller-menu__heading">
+			<span class="steller-menu__heading-icon citizen-ui-icon mw-ui-icon-book mw-ui-icon-wikimedia-book" aria-hidden="true">
+			</span>
+
+			<span class="steller-menu__heading-label">{{.}}</span>
+
+			<span class="steller-menu__heading-chevron" aria-hidden="true">
+				<span class="citizen-ui-icon mw-ui-icon-wikimedia-collapse"></span>
+			</span>
+		</summary>
+	{{/label}}
+
+	{{>MenuContents}}
+
+	{{#label}}
+	</details>
+	{{/label}}
+</nav>

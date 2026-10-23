@@ -1,9 +1,10 @@
 {
 	"name": "Citizen",
-	"version": "3.24.0",
+	"version": "3.24.0-Steller",
 	"author": [
 		"[https://www.mediawiki.org/wiki/User:Alistair3149 Alistair3149]",
 		"[https://www.mediawiki.org/wiki/User:Octfx Octfx]",
+		"[https://www.mediawiki.org/wiki/User:DarkGames26 Dark] (Fork - Steller)",
 		"..."
 	],
 	"url": "https://www.mediawiki.org/wiki/Skin:Citizen",
@@ -70,10 +71,12 @@
 						"footer-icons"
 					],
 					"scripts": [
-						"skins.citizen.scripts"
+						"skins.citizen.scripts",
+						"skins.steller.scripts"
 					],
 					"styles": [
 						"skins.citizen.styles",
+						"skins.steller.styles",
 						"skins.citizen.codex.styles",
 						"skins.citizen.icons"
 					],
@@ -170,6 +173,12 @@
 				"resources/skins.citizen.styles/skin.less"
 			]
 		},
+		"skins.steller.styles": {
+            "styles": [
+                "resources/skins.steller/styles/steller.less",
+				"resources/skins.steller/styles/variables.less"
+            ]
+        },
 		"skins.citizen.codex.styles": {
 			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"codexStyleOnly": true,
@@ -239,6 +248,24 @@
 				"mediawiki.util"
 			]
 		},
+		"skins.steller.scripts": {
+            "scripts": [
+                "resources/skins.steller/scripts/steller.js"
+                ],
+		"messages": [
+			"steller-sidebar-label",
+			"steller-sidebar-open",
+			"steller-sidebar-close",
+			"steller-sidebar-collapse",
+			"steller-sidebar-expand",
+			"steller-sidebar-preference-name",
+			"steller-sidebar-preference-description"
+		],
+		"dependencies": [
+       		"mediawiki.storage"
+    		]
+        },
+
 		"skins.citizen.toc": {
 			"packageFiles": [
 				"resources/skins.citizen.toc/index.js",
@@ -778,6 +805,7 @@
 				"articlesSearch",
 				"bell",
 				"block",
+				"book",
 				"collapse",
 				"die",
 				"edit",
@@ -818,6 +846,8 @@
 				"speechBubbles",
 				"star",
 				"table",
+				"tableMoveColumnAfter",
+				"tableMoveColumnBefore",
 				"tableAddRowBefore",
 				"trash",
 				"tray",

@@ -22,29 +22,44 @@
   <a href="https://mwcitizen.skin">📚&nbsp;Documentation</a>
 </p>
 
-## Notable features
+![](https://cdn.polandball.wiki/central/5/54/Screenshot_Skin_Steller.jpg)
 
-- **Responsive layout**: Responsive and able to adapt to different screen sizes. 📱💻🖥️
-- **Command palette**: Quick access to everything. 🔍⚡️
-- **Light/dark mode**: Switch between light and dark mode. ☀️🌙
-- **Improved extension UI**: Adjust supported extensions to be more usable and cohesive. 🤝🔗
-- **Extensible preferences**: Let users personalize their experience, and let gadgets add their own options. 👀📃
-- **Collapsible sections**: Collapse and expand article sections. 📖📕
-- **Persistent ToC**: Access ToC anywhere in the article. 🔍📖
-- **Progressive Web App**: Give a more app-like experience when user add your wiki to their home screen. 📱
+Steller is a fork of the Citizen MediaWiki skin that enhances the user experience with additional features and custom styling. While maintaining the beautiful, responsive design of Citizen, Steller introduces new functionalities and improved extension support.
+
+## Notable Features
+In addition to all the features from Citizen, Steller includes:
+
+- **Enhanced Collapsible Sidebar**: A more flexible sidebar that can be collapsed to maximize content viewing space 📑
+- **Custom Extension Styles**: Additional styling support for various MediaWiki extensions based on blur effects 🎨
+
+### Citizen
+- **Responsive layout**: Responsive and able to adapt to different screen sizes 📱💻🖥️
+- **Light/dark mode**: Switch between light and dark mode ☀️🌙
+- **Reading preferences**: Adjust page width, font size, and line height 👀📃
+- **Collapsible sections**: Collapse and expand article sections 📖📕
+- **Persistent ToC**: Access ToC anywhere in the article 🔍📖
+- **Rich search suggestions**: More helpful search suggestions with images and descriptions 🔍👀
+- **Progressive Web App**: App-like experience when added to home screen 📱
 
 ## Installation
-
-1. [Download](https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/main.zip) place the file(s) in a directory called `Citizen` in your `skins/` folder.
-2. Add the following code at the bottom of your LocalSettings.php:
-
-   ```php
-   wfLoadSkin( 'Citizen' );
-   ```
-
+1. [Download](https://github.com/PolandballWiki/mediawiki-skins-Citizen/archive/refs/heads/main.zip) place the file(s) in a directory called `Citizen` in your `skins/` folder.
+2. Add the following code at the bottom of your LocalSettings.php and **after all other extensions**:
+```php
+wfLoadSkin( 'Citizen' );
+```
 3. **✔️Done** - Navigate to Special:Version on your wiki to verify that the skin is successfully installed.
 
 ## Configurations
+**The skin works out of the box without any configurations.**
+The config flags allow more customization on the specific features in the skin.
+
+### CSS Variables
+Steller provides customizable CSS variables to enhance the theme customization. These variables can be modified in your wiki's CSS files.
+
+#### Site Background
+Name | Description | Light Theme Default | Dark Theme Default
+:--- | :--- | :--- | :---
+`--site-bg-image` | Background image URL for the site | - | -
 
 Check out the [configuration documentation](https://mwcitizen.skin/config/) for more details.
 

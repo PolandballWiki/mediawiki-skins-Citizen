@@ -1,0 +1,975 @@
+@import 'variables.less';
+
+/* Site-background */
+.steller-background {
+	position: fixed;
+	inset: 0 0 auto;
+	z-index: -1;
+	height: var( --steller-bg-height );
+	pointer-events: none;
+	opacity: var( --steller-bg-opacity );
+	background-image: var( --steller-bg-image );
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background-position: 0 var( --steller-bg-position );
+	mask-image: linear-gradient( #000 55%, transparent );
+}
+
+/*
+ * Steller sidebar for Citizen.
+ * Responsive layout, navigation, search and sidebar controls.
+ */
+
+.steller-visually-hidden() {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect( 0, 0, 0, 0 );
+	clip-path: inset( 50% );
+	white-space: nowrap;
+	border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Base layout and mobile behaviour
+   -------------------------------------------------------------------------- */
+/* Blur background for Header */
+.citizen-header.steller-header::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-color: var( --steller-header-bg );
+	backdrop-filter: blur( var( --steller-header-blur ) );
+}
+
+.citizen-header.steller-header,
+.citizen-header.steller-header .citizen-header__inner,
+.citizen-header.steller-header .citizen-header__end {
+	overflow: visible;
+	isolation: isolate;
+	background-color: transparent;
+}
+
+.citizen-header.steller-header .citizen-header__inner,
+.citizen-header.steller-header .citizen-header__end {
+	min-width: 0;
+}
+
+.steller-header__siteinfo {
+	display: none;
+}
+
+.steller-logo-icon {
+	display: block;
+}
+
+.steller-logo-full {
+	display: none;
+}
+
+.steller-sidebar__toggle-label {
+	.steller-visually-hidden();
+}
+
+.steller-sidebar__toggle-icon--desktop {
+	display: none;
+}
+
+.steller-sidebar__toggle-icon--mobile {
+	position: static;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 20px;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	overflow: visible;
+	clip: auto;
+	clip-path: none;
+	white-space: normal;
+}
+
+/* --------------------------------------------------------------------------
+   Desktop sidebar
+   -------------------------------------------------------------------------- */
+
+@media screen and ( min-width: @min-width-breakpoint-desktop ) {
+
+	/* Sidebar width and shared layout transitions. */
+
+	:root.citizen-header-position-left {
+		--header-size: @steller-sidebar-expanded-width;
+	}
+
+	:root.citizen-header-position-left.steller-sidebar-collapsed-clientpref-1 {
+		--header-size: @steller-sidebar-collapsed-width;
+	}
+
+	.citizen-header.steller-header {
+		box-sizing: border-box;
+		inline-size: var( --header-size );
+		min-inline-size: var( --header-size );
+		align-items: stretch;
+		overflow: visible;
+		transition:
+			inline-size 250ms var( --transition-timing-function-ease, ease ),
+			min-inline-size 250ms var( --transition-timing-function-ease, ease );
+	}
+
+	/* Logo. */
+
+	.citizen-header.steller-header > .steller-header__logo {
+		display: flex;
+		flex: 0 0 auto;
+		justify-content: center;
+		box-sizing: border-box;
+		width: 100%;
+		padding: var( --space-sm );
+		margin: 0;
+		border: 0;
+        border-radius: var(--border-radius-medium);
+        &:hover {
+            background: var( --color-surface-1 );
+        }
+	}
+
+	.steller-header__logo-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		padding: 0;
+		margin: 0;
+		border: 0;
+		background: transparent;
+	}
+
+	.citizen-header.steller-header .steller-logo-icon {
+		display: none;
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+	}
+
+	.citizen-header.steller-header .steller-logo-full {
+		display: block;
+		width: auto;
+		height: auto;
+		max-width: 100%;
+		max-height: @steller-logo-size; /* tamaño de logo*/
+		object-fit: contain;
+	}
+
+	:root.citizen-header-position-left.steller-sidebar-collapsed-clientpref-1 {
+		.steller-header .steller-logo-icon {
+			display: block;
+		}
+
+		.steller-header .steller-logo-full {
+			display: none;
+		}
+	}
+
+	/* Site title and statistics. */
+	.citizen-header.steller-header .steller-header__siteinfo {
+		display: flex;
+		flex: 0 0 auto;
+		flex-direction: column;
+		align-items: center;
+		gap: var( --space-sm );
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		padding-inline: var( --space-xs );
+		margin: 0;
+		text-align: center;
+	}
+
+	.steller-header__wordmark {
+		max-width: 100%;
+		font-size: var( --font-size-medium );
+		font-weight: var( --font-weight-semibold );
+		color: var( --color-base );
+		overflow-wrap: anywhere;
+	}
+
+	.steller-header__siteinfo .citizen-siteStats {
+		display: grid;
+		grid-template-columns: repeat( 3, minmax( 0, 1fr ) );
+		gap: var( --space-xs );
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.steller-header__siteinfo .citizen-siteStats__item {
+		display: none;
+		min-width: 0;
+		flex-direction: column;
+		align-items: center;
+		gap: var( --space-xxs );
+		margin: 0;
+		padding: 0;
+		text-align: center;
+	}
+
+	.steller-header__siteinfo #citizen-siteStats__item--articles,
+	.steller-header__siteinfo #citizen-siteStats__item--edits,
+	.steller-header__siteinfo #citizen-siteStats__item--users {
+		display: flex;
+	}
+
+	.steller-header__siteinfo .citizen-siteStats__item > .citizen-ui-icon {
+		display: block;
+		flex: 0 0 16px;
+		width: 16px;
+		height: 16px;
+		margin: 0;
+	}
+
+	.steller-header__siteinfo .citizen-siteStats__item > span:nth-child(2) {
+		font-size: var( --font-size-small );
+		font-weight: var( --font-weight-semibold );
+		color: var( --color-base );
+	}
+
+	.steller-header__siteinfo .citizen-siteStats__label {
+		font-size: 0.7rem;
+		line-height: 1.2;
+		color: var( --color-subtle );
+		overflow-wrap: anywhere;
+	}
+
+	:root.citizen-header-position-left.steller-sidebar-collapsed-clientpref-1 {
+		.steller-header__siteinfo {
+			display: none !important;
+		}
+	}
+    
+    
+
+	/* Search: a full-width pill when expanded. */
+
+	.citizen-header.steller-header .citizen-search {
+		display: flex;
+		flex: 0 0 auto;
+		align-items: center;
+		align-self: stretch;
+		box-sizing: border-box;
+		width: auto;
+		min-width: 0;
+		max-width: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.citizen-header.steller-header .citizen-search > * {
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		max-width: none;
+	}
+
+	.citizen-header.steller-header #citizen-search-summary {
+		display: flex !important;
+		align-items: center;
+		justify-content: flex-start;
+		gap: var( --space-sm );
+		box-sizing: border-box;
+		min-width: 0;
+		max-width: none;
+		min-height: @steller-sidebar-control-size;
+		margin: 0;
+		padding: 0 var( --space-sm ) !important;
+		border: var( --border-width-base ) solid var( --border-color-base );
+		border-radius: var( --border-radius-pill );
+		background: var( --color-surface-1 );
+		box-shadow: none;
+		text-align: start;
+		white-space: nowrap;
+	}
+
+	.citizen-header.steller-header #citizen-search-summary > span:not( .citizen-ui-icon ) {
+		position: static;
+		display: inline-block;
+		flex: 1 1 auto;
+		width: auto;
+		height: auto;
+		min-width: 0;
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+		clip: auto;
+		clip-path: none;
+		
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+    .citizen-search span {
+        color: var(--color-subtle);
+        font-size: var( --font-size-small );
+    }
+    
+
+	.citizen-header.steller-header #citizen-search-summary > .citizen-ui-icon,
+	.citizen-header.steller-header #citizen-search-summary > svg {
+		display: block;
+		flex: 0 0 20px;
+		width: 18px;
+		height: 18px;
+        color: var(--color-subtle);
+	}
+
+	/* Sidebar column and floating toggle. */
+
+	.citizen-header.steller-header > .steller-sidebar {
+		position: relative;
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		align-items: stretch;
+		width: 100%;
+		min-width: 0;
+		min-height: 0;
+		margin: 0;
+		padding: 0;
+		overflow: visible;
+	}
+
+	.steller-sidebar > .steller-sidebar__details {
+		position: static;
+		display: block;
+		flex: 0 0 auto;
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	.citizen-header.steller-header .steller-sidebar__toggle {
+		position: fixed;
+		top: 50%;
+		left: calc( var( --header-size, @steller-sidebar-expanded-width ) - 1.25rem );
+		right: auto;
+		bottom: auto;
+		z-index: 80;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		width: @steller-sidebar-control-size;
+		min-width: @steller-sidebar-control-size;
+		height: @steller-sidebar-control-size;
+		min-height: @steller-sidebar-control-size;
+		max-width: @steller-sidebar-control-size;
+		max-height: @steller-sidebar-control-size;
+		margin: 0;
+		padding: 0;
+		border: 1px solid var( --border-color-base );
+		border-radius: var( --border-radius-pill );
+		background: var( --background-color-base );
+		box-shadow: var( --box-shadow-drop-medium, 0 2px 8px rgba( 0, 0, 0, 0.14 ) );
+		overflow: visible;
+		transform: translateY( -430% );
+		cursor: pointer;
+		white-space: nowrap;
+		transition:
+			left 250ms var( --transition-timing-function-ease, ease ),
+			background-color 180ms var( --transition-timing-function-ease, ease );
+	}
+
+	.citizen-header.steller-header .steller-sidebar__toggle:hover {
+		background: var( --color-surface-1 );
+	}
+
+	.citizen-header.steller-header .steller-sidebar__toggle::-webkit-details-marker {
+		display: none;
+	}
+
+	.citizen-header.steller-header .steller-sidebar__toggle::marker {
+		content: "";
+	}
+
+	.steller-sidebar__toggle > .steller-sidebar__toggle-icon--desktop {
+		position: static;
+		display: block;
+		flex: 0 0 18px;
+		width: 18px;
+		height: 18px;
+		transform: rotate( 0deg );
+		transition: transform 200ms var( --transition-timing-function-ease, ease );
+	}
+
+	.steller-sidebar__toggle > .steller-sidebar__toggle-icon--mobile {
+		display: none;
+	}
+
+	.steller-sidebar__toggle > .steller-sidebar__toggle-label {
+		position: static;
+		width: auto;
+		height: auto;
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+		clip: auto;
+		clip-path: none;
+		color: var( --color-base );
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	:root.citizen-header-position-left.steller-sidebar-collapsed-clientpref-1 {
+		.steller-sidebar__toggle > .steller-sidebar__toggle-icon--desktop {
+			transform: rotate( 180deg );
+		}
+	}
+
+	/* Persistent sidebar card, overriding Citizen dropdown defaults. */
+
+	.citizen-header.steller-header .steller-sidebar .steller-sidebar__card {
+		position: static;
+		inset: auto;
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		min-height: 0;
+		max-width: none;
+		max-height: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		contain: none;
+		content-visibility: visible;
+		visibility: visible;
+		opacity: 1;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		clip-path: none;
+		transform: none;
+		transition: none;
+	}
+
+	.citizen-header.steller-header .steller-sidebar .steller-sidebar__card-content {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: flex-start;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+		max-width: none;
+		max-height: 100%;
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+		contain: none;
+		content-visibility: visible;
+		visibility: visible;
+		opacity: 1;
+		background: transparent;
+		transition: none;
+	}
+
+	.steller-sidebar__mobile-header {
+		display: none;
+	}
+
+	/* Navigation scrolls from the top and keeps each menu's natural height. */
+
+	.steller-main-menu {
+		position: relative;
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-content: flex-start;
+		align-items: stretch;
+		align-self: stretch;
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		min-height: 0;
+		max-width: none;
+		max-height: 100%;
+		gap: var( --space-xs );
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-width: none;
+	}
+
+	.steller-main-menu::-webkit-scrollbar {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+
+	.steller-main-menu > .citizen-menu {
+		position: relative;
+		display: block;
+		flex: 0 0 auto;
+		align-self: stretch;
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		visibility: visible;
+		opacity: 1;
+	}
+
+	/* Collapsible native menu headings. */
+
+	.steller-menu__details {
+		display: block;
+		flex: 0 0 auto;
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	.steller-menu__heading {
+		appearance: none;
+		display: flex;
+		align-items: center;
+		gap: var( --space-sm );
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		min-height: 40px;
+		padding: var( --space-sm );
+		margin: 0;
+		border: 0;
+		border-radius: var( --border-radius-medium );
+		background: transparent;
+		color: var( --color-subtle );
+		font: inherit;
+		font-size: var( --font-size-small );
+		font-weight: var( --font-weight-medium );
+		text-align: start;
+		cursor: pointer;
+        
+	}
+	.mw-portlet-navigation .steller-menu__heading-label {
+	    font-size: var( --font-size-small ) ;
+	}
+
+	.steller-menu__heading:hover {
+		background: var( --background-color-quiet--hover );
+	}
+
+	.steller-menu__heading::-webkit-details-marker {
+		display: none;
+	}
+
+	.steller-menu__heading::marker {
+		content: "";
+	}
+
+	/* In the expanded sidebar, the heading icon matches the text size. */
+
+	.steller-menu__heading-icon {
+		display: flex;
+		flex: 0 0 1em;
+		align-items: center;
+		justify-content: center;
+		width: 1em;
+		min-width: 1em;
+		height: 1em;
+		min-height: 1em;
+	}
+
+	.steller-menu__heading-icon svg {
+		display: block;
+		width: 1em;
+		height: 1em;
+		max-width: 1em;
+		max-height: 1em;
+	}
+
+	.steller-menu__heading-label {
+		display: block;
+		flex: 1 1 auto;
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.steller-menu__heading-chevron {
+		display: flex;
+		flex: 0 0 16px;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		height: 16px;
+		margin-inline-start: auto;
+		transform: rotate( 180deg );
+		transition: transform 180ms var( --transition-timing-function-ease, ease );
+	}
+
+	.steller-menu__heading-chevron .citizen-ui-icon {
+		width: 16px;
+		height: 16px;
+	}
+
+	.steller-menu__details[open] > .steller-menu__heading .steller-menu__heading-chevron {
+		transform: rotate( 0deg );
+	}
+
+	.steller-menu__content[ hidden ] {
+		display: none !important;
+	}
+
+	.steller-menu__details[open] > .citizen-menu__content,
+	.steller-menu__content:not( [hidden] ) {
+		display: block;
+		width: 100%;
+		min-width: 0;
+		max-width: none;
+		max-height: none;
+		margin: 0;
+		padding: 0;
+		overflow: visible;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+
+	.steller-menu .citizen-menu__content-list {
+		display: flex;
+		flex-direction: column;
+		gap: var( --space-xxs );
+		box-sizing: border-box;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.steller-menu .citizen-menu__content-list > .mw-list-item > a {
+		display: flex;
+		align-items: center;
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		min-height: 36px;
+		padding-inline: var( --space-sm );
+		color: var( --color-base );
+		border-radius: var( --border-radius-medium );
+	}
+
+
+
+	/* User, preferences and notifications sit in a horizontal row. */
+
+	.citizen-header__inner.steller-header-inner {
+		flex: 0 0 auto;
+		align-self: stretch;
+		width: 100%;
+		min-width: 0;
+		margin-top: auto;
+		padding: 0;
+		overflow: visible;
+	}
+
+	.citizen-header__inner.steller-header-inner > .citizen-header__start {
+		display: none;
+	}
+
+	.citizen-header__inner.steller-header-inner > .citizen-header__end {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: var( --space-xxs );
+		box-sizing: border-box;
+		width: 100%;
+		min-width: 0;
+		margin: 0;
+		padding: var( --space-xxs );
+		overflow: visible;
+	}
+
+	.citizen-header__inner.steller-header-inner > .citizen-header__end > * {
+		flex: 0 0 auto;
+		min-width: 0;
+	}
+
+	/* Compact sidebar: hide text and child links, retain heading icons. */
+
+	:root.citizen-header-position-left.steller-sidebar-collapsed-clientpref-1 {
+		.steller-main-menu {
+			gap: var( --space-xxs );
+			justify-content: flex-start;
+			align-content: flex-start;
+			align-items: stretch;
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+
+		.steller-main-menu > .citizen-menu {
+			flex: 0 0 auto;
+		}
+
+		.steller-main-menu .citizen-menu__content,
+		.steller-main-menu .citizen-menu__content-list {
+			display: none !important;
+		}
+
+		.steller-menu__heading {
+			justify-content: center;
+			gap: 0;
+			width: 40px;
+			min-width: 40px;
+			max-width: 40px;
+			height: 40px;
+			min-height: 40px;
+			margin-inline: auto;
+			padding: 0;
+		}
+
+		.steller-menu__heading-icon {
+			flex: 0 0 18px;
+			width: 18px;
+			min-width: 18px;
+			height: 18px;
+			min-height: 18px;
+		}
+
+		.steller-menu__heading-icon svg {
+			width: 18px;
+			height: 18px;
+			max-width: 18px;
+			max-height: 18px;
+		}
+
+		.steller-menu__heading-label,
+		.steller-menu__heading-chevron {
+			display: none !important;
+		}
+
+		/* Remove the search pill's outline when only its icon is shown. */
+
+		.citizen-header.steller-header #citizen-search-summary {
+			justify-content: center;
+			gap: 0;
+			width: @steller-sidebar-control-size !important;
+			min-width: @steller-sidebar-control-size;
+			max-width: @steller-sidebar-control-size;
+			height: @steller-sidebar-control-size;
+			min-height: @steller-sidebar-control-size;
+			max-height: @steller-sidebar-control-size;
+			margin: 0 auto;
+			padding: 0 !important;
+			border: 0 !important;
+			border-radius: 0 !important;
+			background: transparent;
+			box-shadow: none;
+			overflow: visible;
+		}
+
+		.citizen-header.steller-header #citizen-search-summary > span:not( .citizen-ui-icon ) {
+			.steller-visually-hidden();
+		}
+
+		.citizen-header.steller-header #citizen-search-summary > .citizen-ui-icon,
+		.citizen-header.steller-header #citizen-search-summary > svg {
+			flex: 0 0 20px;
+			width: 20px;
+			height: 20px;
+		}
+
+		.steller-header__siteinfo {
+			display: none !important;
+		}
+	}
+
+	/* Keep page content aligned with the animated sidebar width. */
+
+	.citizen-page-container {
+		transition: padding-inline 250ms var( --transition-timing-function-ease, ease );
+	}
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion
+   -------------------------------------------------------------------------- */
+
+@media ( prefers-reduced-motion: reduce ) {
+	.citizen-header.steller-header,
+	.steller-sidebar__toggle,
+	.steller-sidebar__toggle-icon--desktop,
+	.steller-menu__heading-chevron,
+	.citizen-page-container {
+		transition: none !important;
+	}
+}
+
+
+/* --------------------------------------------------------------------------
+   Steller: mobile navigation fixes
+   -------------------------------------------------------------------------- */
+
+@media screen and ( max-width: 1119px ) {
+
+	/* Increase the native Citizen drawer button's touch target. */
+
+	.citizen-header.steller-header
+		.citizen-drawer > .citizen-dropdown-details >
+		.citizen-dropdown-summary,
+	.citizen-header.steller-header
+		.steller-sidebar > .steller-sidebar__details >
+		.steller-sidebar__toggle {
+		appearance: none;
+
+		box-sizing: border-box;
+		display: flex !important;
+		flex: 0 0 44px;
+		align-items: center;
+		justify-content: center;
+
+		width: 44px !important;
+		min-width: 44px;
+		max-width: 44px;
+
+		height: 44px !important;
+		min-height: 44px;
+		max-height: 44px;
+
+		margin: 0;
+		padding: 0;
+
+		border: 0;
+		border-radius: var( --border-radius-medium );
+		background: transparent;
+		box-shadow: none;
+
+		color: var( --color-base );
+		line-height: 1;
+		overflow: visible;
+		cursor: pointer;
+	}
+
+	/* Show the native hamburger icon at a readable size. */
+
+	.citizen-header.steller-header
+		.citizen-drawer > .citizen-dropdown-details >
+		.citizen-dropdown-summary > svg {
+		display: block !important;
+		flex: 0 0 24px;
+
+		width: 24px !important;
+		height: 24px !important;
+
+		margin: 0;
+		color: currentcolor;
+	}
+
+	/* Keep the mobile icon in Steller's custom toggle visible too. */
+
+	.citizen-header.steller-header
+		.steller-sidebar__toggle-icon--mobile {
+		position: static !important;
+
+		display: flex !important;
+		flex: 0 0 24px;
+		align-items: center;
+		justify-content: center;
+
+		width: 24px !important;
+		height: 24px !important;
+
+		padding: 0;
+		margin: 0;
+
+		overflow: visible;
+		clip: auto;
+		clip-path: none;
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.citizen-header.steller-header
+		.steller-sidebar__toggle-icon--mobile svg {
+		display: block !important;
+		flex: 0 0 24px;
+
+		width: 24px !important;
+		height: 24px !important;
+
+		max-width: 24px;
+		max-height: 24px;
+	}
+
+	/* Hide the native button's text without removing its accessible label. */
+
+	.citizen-header.steller-header
+		.citizen-drawer > .citizen-dropdown-details >
+		.citizen-dropdown-summary > span {
+		.steller-visually-hidden();
+	}
+
+	/* Remove the default disclosure triangle from menu headings. */
+
+	.citizen-header.steller-header
+		.citizen-drawer .steller-menu__heading {
+		list-style: none;
+	}
+
+	.citizen-header.steller-header
+		.citizen-drawer .steller-menu__heading::-webkit-details-marker {
+		display: none !important;
+	}
+
+	.citizen-header.steller-header
+		.citizen-drawer .steller-menu__heading::marker {
+		content: "";
+	}
+
+	/* Hide Steller's custom chevron in the mobile navigation. */
+
+	.citizen-header.steller-header
+		.citizen-drawer .steller-menu__heading-chevron {
+		display: none !important;
+	}
+
+	/* Touch feedback matching Citizen's quiet controls. */
+
+	.citizen-header.steller-header
+		.citizen-drawer .citizen-dropdown-summary:hover,
+	.citizen-header.steller-header
+		.steller-sidebar__toggle:hover {
+		background: var( --background-color-quiet--hover );
+	}
+
+	.citizen-header.steller-header
+		.citizen-drawer .citizen-dropdown-summary:active,
+	.citizen-header.steller-header
+		.steller-sidebar__toggle:active {
+		background: var( --color-surface-1 );
+	}
+}

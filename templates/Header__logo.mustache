@@ -1,8 +1,34 @@
-<div class="citizen-header__logo">
-	<a href="{{link-mainpage}}" class="mw-logo citizen-cdx-button--size-large cdx-button cdx-button--fake-button cdx-button--fake-button--enabled cdx-button--icon-only cdx-button--weight-quiet" title="{{msg-tooltip-p-logo}}">
-		{{! alt is provided for valid HTML but given aria-hidden not needed. }}
-		<img class="mw-logo-icon" src="{{>Logo_icon_src}}"{{!
-			}} alt="" aria-hidden="true" height="32" width="32">
-		{{#data-logos.icon-home}}{{>Icon}}{{/data-logos.icon-home}}
+<div class="citizen-header__logo steller-header__logo">
+	<a
+		href="{{link-mainpage}}"
+		class="mw-logo steller-header__logo-link"
+		title="{{msg-tooltip-p-logo}}"
+	>
+		<img
+			class="mw-logo-icon steller-logo-icon"
+			src="{{>Logo_icon_src}}"
+			alt=""
+			aria-hidden="true"
+			width="32"
+			height="32"
+		>
+
+		{{#data-logos.1x}}
+			<img
+				class="steller-logo-full"
+				src="{{.}}"
+				alt=""
+				aria-hidden="true"
+			>
+		{{/data-logos.1x}}
+
+		{{^data-logos.1x}}
+			<img
+				class="steller-logo-full"
+				src="{{>Logo_icon_src}}"
+				alt=""
+				aria-hidden="true"
+			>
+		{{/data-logos.1x}}
 	</a>
 </div>

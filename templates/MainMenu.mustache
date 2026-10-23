@@ -1,4 +1,8 @@
-<section id="citizen-main-menu" class="citizen-main-menu citizen-drawer__menu">
-	{{#data-portlets-first}}{{>Menu}}{{/data-portlets-first}}
-	{{#array-portlets-rest}}{{>Menu}}{{/array-portlets-rest}}
+<section id="citizen-main-menu steller-main-menu" class="citizen-main-menu citizen-drawer__menu steller-main-menu">
+	{{#data-portlets-first}}
+		{{>StellerMenu}}
+	{{/data-portlets-first}}
+	{{#array-portlets-rest}}
+		{{>StellerMenu}}
+	{{/array-portlets-rest}}
 </section>

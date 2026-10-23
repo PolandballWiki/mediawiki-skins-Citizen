@@ -17,6 +17,8 @@ project.index
 ## Sublime
 sublime-*
 sftp-config.json
+skin.json.pre-steller.json
+skin.json.bak
 
 # Building & testing
 /composer.lock

@@ -5,14 +5,14 @@
 	margin-bottom: var( --header-size );
 	clear: both;
 	font-size: var( --font-size-small );
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 	background-color: var( --color-surface-2 );
 	direction: ltr;
+	contain: content;
 
 	&__container {
 		max-width: var( --width-layout--extended );
-		margin-right: auto;
-		margin-left: auto;
+		margin-inline: auto;
 	}
 
 	&__content,
@@ -20,15 +20,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var( --space-md );
+		justify-content: space-between;
 		padding: var( --space-md ) 0;
 	}
 
 	&__bottom {
 		align-items: center;
-		justify-content: space-between;
-		margin-right: auto;
-		margin-left: auto;
-		border-top: 1px solid var( --border-color-base );
+		margin-inline: auto;
+		border-top: var( --border-width-base ) solid var( --border-color-base );
 	}
 
 	&__siteinfo {
@@ -45,7 +44,7 @@
 
 	a {
 		font-weight: var( --font-weight-medium );
-		color: var( --color-base--emphasized );
+		color: var( --color-emphasized );
 	}
 
 	ul {
@@ -60,16 +59,6 @@
 }
 
 #footer {
-	&-sitetitle {
-		font-size: 1.25rem;
-		color: var( --color-base--emphasized );
-
-		img.mw-logo-wordmark {
-			max-height: 54px;
-			filter: invert( 1 ) hue-rotate( 180deg );
-		}
-	}
-
 	&-places {
 		ul {
 			flex-direction: column;
@@ -78,14 +67,14 @@
 		a {
 			display: block;
 			padding: var( --space-xs ) var( --space-md );
-			border-radius: var( --border-radius--small );
+			border-radius: var( --border-radius-base );
 
 			&:hover {
-				background-color: var( --background-color-quiet--hover );
+				background-color: var( --background-color-button-quiet--hover );
 			}
 
 			&:active {
-				background-color: var( --background-color-quiet--active );
+				background-color: var( --background-color-button-quiet--active );
 			}
 
 			&:hover,

@@ -1,56 +1,64 @@
 /**
- * Create an observer based vertical scroll direction
+ * Initialize a direction observer based on scroll behavior.
  *
- * @param {Function} onScrollDown functionality for when viewport is scrolled down
- * @param {Function} onScrollUp functionality for when viewport is scrolled up
- * @param {number} threshold minimum scrolled px to trigger the function
- * @return {void}
+ * @param {Function} onScrollDown - Function to be called when scrolling down.
+ * @param {Function} onScrollUp - Function to be called when scrolling up.
+ * @param {number} threshold - The threshold for significant scroll position change.
+ * @return {Object}
  */
-function initDirectionObserver( onScrollDown, onScrollUp, threshold ) {
-	const throttle = require( 'mediawiki.util' ).throttle;
-
-	let lastScrollTop = window.scrollY;
+function initDirectionObserver( onScrollDown, onScrollUp, threshold = 0 ) {
+	let lastScrollPosition = 0;
+	let lastScrollDirection = '';
 
 	const onScroll = () => {
-		const scrollTop = window.scrollY;
+		const currentScrollPosition = window.scrollY;
+		const scrollDiff = currentScrollPosition - lastScrollPosition;
 
-		if ( Math.abs( scrollTop - lastScrollTop ) < threshold ) {
+		if ( Math.abs( scrollDiff ) < threshold ) {
 			return;
 		}
 
-		if ( scrollTop > lastScrollTop ) {
+		if ( scrollDiff > 0 && lastScrollDirection !== 'down' ) {
+			lastScrollDirection = 'down';
 			onScrollDown();
-		} else {
+		} else if ( scrollDiff < 0 && lastScrollDirection !== 'up' ) {
+			lastScrollDirection = 'up';
 			onScrollUp();
 		}
-		lastScrollTop = scrollTop;
+		lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition;
 	};
 
-	window.addEventListener( 'scroll', throttle( onScroll, 250 ) );
+	return {
+		resume: () => {
+			window.addEventListener( 'scroll', mw.util.throttle( onScroll, 100 ) );
+		},
+		pause: () => {
+			window.removeEventListener( 'scroll', mw.util.throttle( onScroll, 100 ) );
+		}
+	};
 }
 
 /**
- * Create an observer based on element visiblity.
- * Based on Vector
+ * Create an observer for showing/hiding feature and for firing scroll event hooks.
  *
- * @param {Function} onHidden functionality for when the element is visible
- * @param {Function} onVisible functionality for when the element is hidden
+ * @param {Function} show functionality for when feature is visible
+ * @param {Function} hide functionality for when feature is hidden
  * @return {IntersectionObserver}
  */
-function initIntersectionObserver( onHidden, onVisible ) {
+function initScrollObserver( show, hide ) {
 	/* eslint-disable-next-line compat/compat */
 	return new IntersectionObserver( ( entries ) => {
 		if ( !entries[ 0 ].isIntersecting && entries[ 0 ].boundingClientRect.top < 0 ) {
 			// Viewport has crossed the bottom edge of the target element.
-			onHidden();
+			show();
 		} else {
 			// Viewport is above the bottom edge of the target element.
-			onVisible();
+			hide();
 		}
 	} );
 }
 
 module.exports = {
 	initDirectionObserver,
-	initIntersectionObserver
+	initScrollObserver
 };

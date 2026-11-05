@@ -43,9 +43,9 @@ final class BodyContent extends Partial {
 	 */
 
 	/**
-	 * Class name for collapsible section wrappers
+	 * Class name for section wrappers
 	 */
-	public const STYLE_COLLAPSIBLE_SECTION_CLASS = 'citizen-section-collapsible';
+	public const SECTION_CLASS = 'citizen-section';
 
 	/**
 	 * List of tags that could be considered as section headers.
@@ -60,17 +60,27 @@ final class BodyContent extends Partial {
 	 * @return bool
 	 */
 	private function shouldFormatPage( $title ) {
+		$shouldFormat = (
+			$this->getConfigValue( 'CitizenEnableCollapsibleSections' ) === true &&
+			$title->canExist() &&
+			!$title->isMainPage() &&
+			$title->isContentPage() &&
+			$title->getContentModel() === CONTENT_MODEL_WIKITEXT
+		);
+
+		if ( !$shouldFormat ) {
+			return false;
+		}
+
+		// Check if page is in mobile view and let MF do the formatting
 		try {
 			$mfCxt = MediaWikiServices::getInstance()->getService( 'MobileFrontend.Context' );
-			// Check if page is in mobile view and let MF do the formatting
 			return !$mfCxt->shouldDisplayMobileView();
 		} catch ( NoSuchServiceException $ex ) {
 			// MobileFrontend not installed. Don't do anything
 		}
 
-		return $this->getConfigValue( 'CitizenEnableCollapsibleSections' ) === true &&
-			!$title->isMainPage() &&
-			$title->isContentPage();
+		return true;
 	}
 
 	/**
@@ -203,8 +213,8 @@ final class BodyContent extends Partial {
 	 */
 	private function createSectionBodyElement( DOMDocument $doc, $sectionNumber ) {
 		$sectionBody = $doc->createElement( 'section' );
-		$sectionBody->setAttribute( 'class', self::STYLE_COLLAPSIBLE_SECTION_CLASS );
-		$sectionBody->setAttribute( 'id', 'citizen-section-collapsible-' . $sectionNumber );
+		$sectionBody->setAttribute( 'class', self::SECTION_CLASS );
+		$sectionBody->setAttribute( 'id', 'citizen-section-' . $sectionNumber );
 
 		return $sectionBody;
 	}

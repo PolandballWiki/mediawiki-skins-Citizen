@@ -1,8 +1,6 @@
-#citizen-body-header-sticky-sentinel {
-	right: 0;
-	left: 0;
-	grid-area: content; // align right above content
+#citizen-page-header-sticky-sentinel {
 	height: 1px;
+	margin-top: -1px;
 	visibility: hidden;
 	contain: strict;
 }
@@ -10,31 +8,49 @@
 .ve-activated,
 .action-edit {
 	// HACK: So sticky header will never trigger in edit action
-	#citizen-body-header-sticky-sentinel {
+	#citizen-page-header-sticky-sentinel {
 		display: none;
 	}
 }
 
-.citizen-body-header--sticky {
-	.mw-body-header {
+.citizen-page-header {
+	position: -webkit-sticky;
+	position: sticky;
+	.citizen-sticky-header-background;
+
+	&::before {
+		opacity: 0;
+		transition: var( --transition-hover );
+		transition-property: opacity;
+	}
+}
+
+.citizen-sticky-header-visible {
+	.citizen-page-header {
+		top: 0;
+		z-index: @z-index-stacking-3;
 		flex-wrap: nowrap;
-		padding-bottom: var( --space-md );
 		white-space: nowrap;
-		.citizen-sticky-header;
+		// So that it won't change the height of the header
+		box-shadow: 0 0 0 1px var( --border-color-base );
+
+		&::before {
+			opacity: 1;
+		}
 
 		.mw-indicators {
 			display: none;
 		}
 	}
 
-	.page-heading {
+	.citizen-page-heading {
 		position: relative;
 		min-width: 0;
 	}
 
 	.firstHeading {
 		overflow: hidden;
-		font-size: var( --font-size-x-large );
+		font-size: var( --font-size-large );
 		text-overflow: ellipsis;
 	}
 
@@ -42,43 +58,46 @@
 		position: absolute;
 		inset: 0 0 0 0;
 		margin: ~'calc( var(  --space-xs ) * -1 )';
-		border-radius: var( --border-radius--small );
+		border-radius: var( --border-radius-base );
 
 		&:hover {
-			background-color: var( --background-color-quiet--hover );
+			background-color: var( --background-color-button-quiet--hover );
 		}
 
 		&:active {
-			background-color: var( --background-color-quiet--active );
+			background-color: var( --background-color-button-quiet--active );
 		}
+	}
+
+	// Collapse page tools label in sticky header
+	.page-actions > .mw-portlet li > a {
+		gap: 0;
+		font-size: 0;
 	}
 }
 
-// Hide sticky header on scroll down on smaller screens
-@media ( max-width: @max-width-breakpoint-tablet ) {
-	.citizen-body-header--sticky {
-		.mw-body-header {
-			transition: var( --transition-menu );
-			transition-property: transform;
-		}
+html {
+	scroll-padding-top: ~'calc( var( --height-sticky-header ) + var( --space-xl ) )';
+}
 
-		&.citizen-scroll--down {
-			.mw-body-header {
-				transform: translateY( -100% );
-			}
-		}
-	}
+/*
+ * T289817 `.mw-sticky-header-element` provides an API for template developers
+ * to make their templates compatible with the Citizen sticky header.
+ */
+.mw-sticky-header-element {
+	.sticky-header-element;
 }
 
 // Make sticky header more compact if there are less screen estate
-@media ( max-width: @max-width-breakpoint-tablet ), ( max-height: 800px ) {
-	.citizen-body-header--sticky {
-		#siteSub {
-			display: none;
+@media ( max-height: 800px ) {
+	.citizen-sticky-header-visible {
+		.citizen-page-header-inner {
+			padding-block: var( --space-sm );
 		}
 
-		.page-actions {
-			display: none;
+		.firstHeading,
+		.mw-page-title-parenthesis {
+			font-size: var( --font-size-medium );
 		}
 	}
 }

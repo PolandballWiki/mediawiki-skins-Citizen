@@ -24,18 +24,18 @@
 	// Fallback text button if extensions register those
 	a {
 		font-size: var( --font-size-small );
-		border-radius: var( --border-radius--small );
+		border-radius: var( --border-radius-base );
 
 		&::before {
 			filter: var( --filter-invert );
 		}
 
 		&:hover {
-			background-color: var( --background-color-quiet--hover );
+			background-color: var( --background-color-button-quiet--hover );
 		}
 
 		&:active {
-			background-color: var( --background-color-quiet--hover );
+			background-color: var( --background-color-button-quiet--hover );
 		}
 	}
 }
@@ -51,7 +51,7 @@
 	&::before {
 		.resource-loader-icon;
 		display: block;
-		background-size: 1.125rem;
+		background-size: var( --size-icon );
 	}
 
 	&:hover {
@@ -59,7 +59,7 @@
 	}
 
 	&:active {
-		opacity: var( --opacity-icon-base--active );
+		opacity: var( --opacity-icon-base--selected );
 	}
 }
 

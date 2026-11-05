@@ -9,40 +9,31 @@ function init( bodyContent ) {
 		return;
 	}
 
-	const
-		headings = bodyContent.querySelectorAll( '.citizen-section-heading' ),
-		sections = bodyContent.querySelectorAll( '.citizen-section-collapsible' ),
-		editSections = bodyContent.querySelectorAll( '.mw-editsection, .mw-editsection-like' );
+	const onEditSectionClick = ( e ) => {
+		e.stopPropagation();
+	};
 
-	for ( let i = 0; i < headings.length; i++ ) {
-		const j = i + 1,
-			collapsibleID = `citizen-section-collapsible-${ j }`,
-			/* T13555 */
-			headline = headings[ i ].querySelector( '.mw-headline' ) || headings[ i ].querySelector( '.mw-heading' );
+	const handleClick = ( e ) => {
+		const target = e.target;
+		const isEditSection = target.closest( '.mw-editsection, .mw-editsection-like' );
 
-		// Set up ARIA
-		headline.setAttribute( 'tabindex', 0 );
-		headline.setAttribute( 'role', 'button' );
-		headline.setAttribute( 'aria-controls', collapsibleID );
-		headline.setAttribute( 'aria-expanded', true );
+		if ( isEditSection ) {
+			onEditSectionClick( e );
+			return;
+		}
 
-		// TODO: Need a keyboard handler
-		headings[ i ].addEventListener( 'click', function () {
-			// .section-heading--collapsed
+		const heading = target.closest( '.citizen-section-heading' );
 
-			this.classList.toggle( 'citizen-section-heading--collapsed' );
-			// .section-collapsible--collapsed
+		if ( heading && heading.nextElementSibling && heading.nextElementSibling.classList.contains( 'citizen-section' ) ) {
+			const section = heading.nextElementSibling;
 
-			sections[ j ].classList.toggle( 'citizen-section-collapsible--collapsed' );
-			headline.setAttribute( 'aria-expanded', headline.getAttribute( 'aria-expanded' ) === 'true' ? 'false' : 'true' );
-		} );
-	}
+			if ( section ) {
+				section.hidden = section.hidden ? false : 'until-found';
+			}
+		}
+	};
 
-	for ( let i = 0; i < editSections.length; i++ ) {
-		editSections[ i ].addEventListener( 'click', function ( e ) {
-			e.stopPropagation();
-		} );
-	}
+	bodyContent.addEventListener( 'click', handleClick, false );
 }
 
 module.exports = {

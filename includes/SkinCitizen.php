@@ -23,16 +23,20 @@
 
 namespace MediaWiki\Skins\Citizen;
 
+use MediaWiki\Skins\Citizen\Components\CitizenComponentFooter;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentMainMenu;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentPageFooter;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentPageHeading;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentPageSidebar;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentPageTools;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentSearchBox;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentSiteStats;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentUserInfo;
 use MediaWiki\Skins\Citizen\Partials\BodyContent;
-use MediaWiki\Skins\Citizen\Partials\Drawer;
-use MediaWiki\Skins\Citizen\Partials\Footer;
-use MediaWiki\Skins\Citizen\Partials\Header;
 use MediaWiki\Skins\Citizen\Partials\Metadata;
-use MediaWiki\Skins\Citizen\Partials\PageTitle;
-use MediaWiki\Skins\Citizen\Partials\PageTools;
-use MediaWiki\Skins\Citizen\Partials\Tagline;
 use MediaWiki\Skins\Citizen\Partials\Theme;
 use SkinMustache;
+use SkinTemplate;
 
 /**
  * Skin subclass for Citizen
@@ -40,6 +44,9 @@ use SkinMustache;
  */
 class SkinCitizen extends SkinMustache {
 	use GetConfigTrait;
+
+	/** @var null|array for caching purposes */
+	private $languages;
 
 	/**
 	 * Overrides template, styles and scripts module
@@ -57,61 +64,117 @@ class SkinCitizen extends SkinMustache {
 	}
 
 	/**
+	 * Ensure onSkinTemplateNavigation runs after all SkinTemplateNavigation hooks
+	 * @see T287622
+	 *
+	 * @param SkinTemplate $skin The skin template object.
+	 * @param array &$content_navigation The content navigation array.
+	 */
+	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
+		parent::runOnSkinTemplateNavigationHooks( $skin, $content_navigation );
+		Hooks\SkinHooks::onSkinTemplateNavigation( $skin, $content_navigation );
+	}
+
+	/**
+	 * Calls getLanguages with caching.
+	 * From Vector 2022
+	 *
+	 * @return array
+	 */
+	protected function getLanguagesCached(): array {
+		if ( $this->languages === null ) {
+			$this->languages = $this->getLanguages();
+		}
+		return $this->languages;
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
-		$data = [];
 		$parentData = parent::getTemplateData();
 
-		$header = new Header( $this );
-		$drawer = new Drawer( $this );
-		$pageTitle = new PageTitle( $this );
-		$tagline = new Tagline( $this );
+		$config = $this->getConfig();
+		$localizer = $this->getContext();
+		$out = $this->getOutput();
+		$title = $this->getTitle();
+		$user = $this->getUser();
+		$pageLang = $title->getPageLanguage();
+		$isRegistered = $user->isRegistered();
+		$isTemp = $user->isTemp();
+
 		$bodycontent = new BodyContent( $this );
-		$footer = new Footer( $this );
-		$tools = new PageTools( $this );
 
-		// Naming conventions for Mustache parameters.
-		//
-		// Value type (first segment):
-		// - Prefix "is" or "has" for boolean values.
-		// - Prefix "msg-" for interface message text.
-		// - Prefix "html-" for raw HTML.
-		// - Prefix "data-" for an array of template parameters that should be passed directly
-		//   to a template partial.
-		// - Prefix "array-" for lists of any values.
-		//
-		// Source of value (first or second segment)
-		// - Segment "page-" for data relating to the current page (e.g. Title, WikiPage, or OutputPage).
-		// - Segment "hook-" for any thing generated from a hook.
-		//   It should be followed by the name of the hook in hyphenated lowercase.
-		//
-		// Conditionally used values must use null to indicate absence (not false or '').
-
-		$data += [
-			// Booleans
-			'toc-enabled' => !empty( $parentData['data-toc'] ),
-			// Data objects
-			'data-sitestats' => $drawer->getSiteStatsData(),
-			'data-user-info' => $header->getUserInfoData( $parentData['data-portlets']['data-user-page'] ),
-			// HTML strings
-			'html-title-heading--formatted' => $pageTitle->decorateTitle( $parentData['html-title-heading'] ),
-			'html-citizen-jumptotop' => $parentData['msg-citizen-jumptotop'] . ' [home]',
-			'html-body-content--formatted' => $bodycontent->decorateBodyContent( $parentData['html-body-content'] ),
-			'html-tagline' => $tagline->getTagline(),
-			// Messages
-			// Needed to be parsed here as it should be wikitext
-			'msg-citizen-footer-desc' => $this->msg( "citizen-footer-desc" )->inContentLanguage()->parse(),
-			'msg-citizen-footer-tagline' => $this->msg( "citizen-footer-tagline" )->inContentLanguage()->parse(),
-			// Decorate data provided by core
-			'data-search-box' => $header->decorateSearchBoxData( $parentData['data-search-box'] ),
-			'data-portlets-sidebar' => $drawer->decorateSidebarData( $parentData['data-portlets-sidebar'] ),
-			'data-footer' => $footer->decorateFooterData( $parentData['data-footer'] ),
+		$components = [
+			'data-footer' => new CitizenComponentFooter(
+				$localizer,
+				$parentData['data-footer']
+			),
+			'data-main-menu' => new CitizenComponentMainMenu( $parentData['data-portlets-sidebar'] ),
+			'data-page-footer' => new CitizenComponentPageFooter(
+				$localizer,
+				$parentData['data-footer']['data-info']
+			),
+			'data-page-heading' => new CitizenComponentPageHeading(
+				$localizer,
+				$out,
+				$pageLang,
+				$title,
+				$parentData['html-title-heading'],
+				$user
+			),
+			'data-page-sidebar' => new CitizenComponentPageSidebar(
+				$localizer,
+				$out,
+				$pageLang,
+				$title,
+				$user
+			),
+			'data-page-tools' => new CitizenComponentPageTools(
+				$config,
+				$localizer,
+				$title,
+				$user,
+				count( $this->getLanguagesCached() ),
+				$parentData['data-portlets-sidebar'],
+				// These portlets can be unindexed
+				$parentData['data-portlets']['data-languages'] ?? [],
+				$parentData['data-portlets']['data-variants'] ?? []
+			),
+			'data-search-box' => new CitizenComponentSearchBox(
+				$localizer,
+				$parentData['data-search-box']
+			),
+			'data-site-stats' => new CitizenComponentSiteStats(
+				$config,
+				$localizer,
+				$pageLang
+			),
+			'data-user-info' => new CitizenComponentUserInfo(
+				$isRegistered,
+				$isTemp,
+				$localizer,
+				$title,
+				$user,
+				$parentData['data-portlets']['data-user-page']
+			)
 		];
 
-		$data += $tools->getPageToolsData( $parentData );
+		foreach ( $components as $key => $component ) {
+			// Array of components or null values.
+			if ( $component ) {
+				$parentData[$key] = $component->getTemplateData();
+			}
+		}
 
-		return array_merge( $parentData, $data );
+		// HACK: So that we can use Icon.mustache in Header__logo.mustache
+		$parentData['data-logos']['icon-home'] = 'home';
+
+		return array_merge( $parentData, [
+			// Booleans
+			'toc-enabled' => !empty( $parentData['data-toc'] ),
+			'html-body-content--formatted' => $bodycontent->decorateBodyContent( $parentData['html-body-content'] )
+		] );
 	}
 
 	/**
@@ -134,6 +197,17 @@ class SkinCitizen extends SkinMustache {
 	}
 
 	/**
+	 * Add client preferences features
+	 * Did not add the citizen-feature- prefix because there might be features from core MW or extensions
+	 *
+	 * @param string $feature
+	 * @param string $value
+	 */
+	private function addClientPrefFeature( string $feature, string $value = 'standard' ) {
+		$this->getOutput()->addHtmlClasses( $feature . '-clientpref-' . $value );
+	}
+
+	/**
 	 * Set up optional skin features
 	 *
 	 * @param array &$options
@@ -150,16 +224,26 @@ class SkinCitizen extends SkinMustache {
 		// Add theme handler
 		$skinTheme->setSkinTheme( $options );
 
-		// Disable default ToC since it is handled by Citizen
-		$options['toc'] = false;
+		// Clientprefs feature handling
+		$this->addClientPrefFeature( 'citizen-feature-autohide-navigation', '1' );
+		$this->addClientPrefFeature( 'citizen-feature-pure-black', '0' );
+		$this->addClientPrefFeature( 'citizen-feature-custom-font-size' );
+		$this->addClientPrefFeature( 'citizen-feature-custom-width' );
 
-		// Collapsible sections
-		// Load in content pages
-		if ( $title !== null && $title->isContentPage() ) {
-			// Since we merged the sections module into core styles and scripts to reduce RL modules
-			// The style is now activated through the class below
-			if ( $this->getConfigValue( 'CitizenEnableCollapsibleSections' ) === true ) {
+		if ( $title !== null ) {
+			// Collapsible sections
+			if (
+				$this->getConfigValue( 'CitizenEnableCollapsibleSections' ) === true &&
+				$title->isContentPage()
+			) {
 				$options['bodyClasses'][] = 'citizen-sections-enabled';
+			}
+
+			// Add a HTML class to indicate the page is a main page
+			// T363281
+			// TODO: Remove this when we move to 1.43 because this is in core
+			if ( $title->isMainPage() ) {
+				$options['bodyClasses'][] = 'page-Main_Page';
 			}
 		}
 

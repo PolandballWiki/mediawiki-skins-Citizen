@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Jdlrobson"
 		]
 	},
 	"citizen-skin-desc": "Um tema agradável para o MediaWiki, com grande usabilidade e dinamismo, que torna as extensões numa parte integrante da experiência coesiva. Criado inicialmente para a [https://starcitizen.tools/ wiki Star Citizen].",
@@ -38,12 +39,5 @@
 	"citizen-tagline-ns-help": "Página de ajuda",
 	"citizen-tagline-ns-category": "Página de categoria",
 	"citizen-tagline-user-regdate": "Registou-se a $1",
-	"prefs-citizen-theme-label": "Variante:",
-	"prefs-citizen-theme-option-auto": "Automática",
-	"prefs-citizen-theme-option-light": "Clara",
-	"prefs-citizen-theme-option-dark": "Escura",
-	"prefs-citizen-fontsize-label": "Tamanho da fonte",
-	"prefs-citizen-pagewidth-label": "Largura da página",
-	"prefs-citizen-lineheight-label": "Altura da linha",
-	"prefs-citizen-resetbutton-label": "Reiniciar para valores por omissão"
+	"citizen-theme-night-label": "Noite"
 }

@@ -22,6 +22,9 @@
 
 	#userloginForm {
 		grid-area: form;
+		/* Fix weird margin issue */
+		padding-top: 0;
+		padding-bottom: var( --space-xs );
 		margin-right: 0;
 	}
 }
@@ -32,19 +35,18 @@
  'message'
 		'stats'
 		'form';
-	gap: var( --space-md );
+	gap: 0 var( --space-md );
 }
 
 .mw-createacct-benefits {
 	&-container {
 		grid-area: stats;
-		padding-bottom: var( --space-lg );
-		border-bottom: 1px solid var( --border-color-base );
+		padding-bottom: var( --space-md );
 
 		h2 {
 			margin: 0;
 			font-size: 1rem;
-			font-weight: var( --font-weight-semibold );
+			font-weight: var( --font-weight-semi-bold );
 		}
 	}
 
@@ -59,17 +61,17 @@
 			padding-left: 3rem;
 			margin: 0;
 			font-size: var( --font-size-x-small );
-			line-height: var( --line-height-xs );
-			color: var( --color-base--subtle );
+			line-height: var( --line-height-xxx-small );
+			color: var( --color-subtle );
 			text-align: start;
 			background-size: 2.5rem;
 
 			h3 {
 				font-family: var( --font-family-base );
 				font-size: 1.125rem;
-				font-weight: var( --font-weight-semibold );
+				font-weight: var( --font-weight-semi-bold );
 				line-height: 1;
-				color: var( --color-base--emphasized );
+				color: var( --color-emphasized );
 				text-align: start;
 			}
 
@@ -91,9 +93,7 @@
 		&-container {
 			padding-top: var( --space-md );
 			padding-bottom: 0;
-			padding-left: var( --space-xxl );
-			border-bottom: 0;
-			border-left: 1px solid var( --border-color-base );
+			padding-left: var( --space-md );
 
 			h2 {
 				max-width: 20rem;

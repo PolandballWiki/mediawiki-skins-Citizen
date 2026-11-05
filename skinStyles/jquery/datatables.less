@@ -7,30 +7,23 @@
  * Date: 2024-03-19
 */
 
-
 /* jquery.dataTables.css */
 table.dataTable {
+	box-sizing: border-box; /* Fix #888 */
 	display: table;
 	max-width: 100%;
 	overflow: hidden; // let datatables handle responsiveness
 	font-size: var( --font-size-small );
-	border: 1px solid var( --border-color-base );
-    border-radius: var( --border-radius--medium );
 }
 
 table.dataTable thead th,
 table.dataTable tfoot th {
-	font-weight: var( --font-weight-semibold );
+	font-weight: var( --font-weight-semi-bold );
 }
 
 table.dataTable thead th,
 table.dataTable thead td {
 	padding: var( --space-xs ) var( --space-sm );
-	font-size: var( --font-size-x-small );
-	font-weight: var( --font-weight-normal );
-	color: var( --color-base--subtle );
-	text-align: start;
-	letter-spacing: 0.05em;
 	border-bottom-color: var( --border-color-base );
 }
 
@@ -43,11 +36,11 @@ table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc {
 	&:hover {
-		background-color: var( --background-color-quiet--hover );
+		background-color: var( --background-color-button-quiet--hover );
 	}
 
 	&:active {
-		background-color: var( --background-color-quiet--active );
+		background-color: var( --background-color-button-quiet--active );
 	}
 }
 
@@ -66,7 +59,7 @@ table.dataTable tbody tr {
 }
 
 table.dataTable tbody tr.selected {
-	background-color: var( --background-color-quiet--hover );
+	background-color: var( --background-color-button-quiet--hover );
 }
 
 table.dataTable tbody th,
@@ -99,14 +92,14 @@ table.dataTable.display tbody tr.odd {
 
 table.dataTable.stripe tbody tr.odd.selected,
 table.dataTable.display tbody tr.odd.selected {
-	background-color: var( --background-color-quiet--hover );
+	background-color: var( --background-color-button-quiet--hover );
 }
 
 table.dataTable.hover tbody tr:hover,
 table.dataTable.display tbody tr:hover,
 table.dataTable.hover tbody tr:hover.selected,
 table.dataTable.display tbody tr:hover.selected {
-	background-color: var( --background-color-quiet--hover );
+	background-color: var( --background-color-button-quiet--hover );
 }
 
 table.dataTable.order-column tbody tr > .sorting_1,
@@ -222,36 +215,36 @@ table.dataTable.no-footer {
 }
 
 table.dataTable tbody tr.selected > * {
-	box-shadow: inset 0 0 0 9999px var( --color-primary );
+	box-shadow: inset 0 0 0 9999px var( --color-progressive );
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
 	font-weight: var( --font-weight-medium );
-	color: var( --color-base--emphasized ) !important;
-	border-radius: var( --border-radius--small );
+	color: var( --color-emphasized ) !important;
+	border-radius: var( --border-radius-base );
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-	color: var( --color-base--emphasized ) !important;
-	background: var( --background-color-primary--active );
+	color: var( --color-emphasized ) !important;
+	background: var( --background-color-progressive-subtle );
 	border-color: transparent;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-	color: var( --color-base--subtle ) !important;
+	color: var( --color-subtle ) !important;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-	color: var( --color-base--emphasized ) !important;
-	background: var( --background-color-quiet--hover );
+	color: var( --color-emphasized ) !important;
+	background: var( --background-color-button-quiet--hover );
 	border-color: transparent;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
-	background: var( --background-color-quiet--active );
+	background: var( --background-color-button-quiet--active );
 	box-shadow: none;
 }
 
@@ -265,15 +258,15 @@ table.dataTable tbody tr.selected > * {
 }
 
 // Expand (+) button
-table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before,
-table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control::before {
 	background-color: var( --color-success );
 	border-color: transparent;
 }
 
 // Collapse (-) button
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td.dtr-control:before,
-table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th.dtr-control:before {
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td.dtr-control::before,
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control::before {
 	background-color: var( --color-destructive );
 }
 
@@ -293,13 +286,20 @@ table.dataTable > tbody > tr.child ul.dtr-details > li {
 
 	.dataTables_length select,
 	.dataTables_filter input {
-		border: 1px solid var( --border-color-base--darker );
 		padding: var( --space-xs );
-		border-radius: var( --border-radius--small );
+		border: var( --border-width-base ) solid var( --border-color-interactive );
+		border-radius: var( --border-radius-base );
 	}
 }
 
 /* Scroller */
+// Add rounded corner like wikitable
+.dataTables_wrapper .dataTables_scroll {
+	overflow: hidden;
+	border-radius: var( --border-radius--medium );
+	box-shadow: var( --box-shadow-border );
+}
+
 div.dts div.dataTables_scrollBody {
 	background: transparent;
 }
@@ -321,7 +321,7 @@ div.dtsp-panesContainer div.dtsp-searchPanes div.dtsp-searchPane div.dataTables_
 div.dtsp-panesContainer div.dtsp-searchPanes div.dtsp-searchPane div.dataTables_wrapper:hover {
 	// Consistent border
 	border: 0;
-    border-radius: var( --border-radius--medium );
+	border-radius: var( --border-radius-medium );
 }
 
 div.dtsp-columns-2 {
@@ -334,19 +334,19 @@ div.dtsp-panesContainer {
 	margin-bottom: var( --space-sm );
 
 	div.dtsp-titleRow {
-		margin-bottom: var( --space-xxs );
 		display: flex;
 		flex-wrap: wrap;
+		margin-bottom: var( --space-xxs );
 	}
 
 	div.dtsp-title {
+		flex-grow: 1;
 		padding: var( --space-xs ) 0;
 		font-size: var( --font-size-x-small );
-		color: var( --color-base--subtle );
-		letter-spacing: 0.05em;
 		line-height: 1;
-		flex-grow: 1;
+		color: var( --color-subtle );
 		text-align: start;
+		letter-spacing: 0.05em;
 	}
 
 	div.dtsp-title,
@@ -360,37 +360,37 @@ div.dtsp-panesContainer {
 	button.dtsp-clearAll,
 	button.dtsp-collapseAll,
 	button.dtsp-showAll {
-		border: 0;
 		padding: var( --space-xs ) var( --space-sm );
 		font-weight: var( --font-weight-medium );
-		border-radius: var( --border-radius--small );
-		color: var( --color-base--emphasized );
+		color: var( --color-emphasized );
+		border: 0;
+		border-radius: var( --border-radius-base );
 
 		&:hover {
-			background-color: var( --background-color-quiet--hover );
-			border-radius: var( --border-radius--small );
+			background-color: var( --background-color-button-quiet--hover );
+			border-radius: var( --border-radius-base );
 		}
 
 		&:active {
-			background-color: var( --background-color-quiet--active );
+			background-color: var( --background-color-button-quiet--active );
 		}
 	}
 
 	button.dtsp-disabledButton {
-		background-color: transparent !important;
-		color: var( --color-base--subtle );
 		display: none;
+		color: var( --color-subtle );
+		background-color: transparent !important;
 	}
 
 	div.dtsp-searchPanes {
 		gap: var( --space-xs );
 
 		div.dtsp-searchPane {
-			margin-top: 0 !important;
-			border: 1px solid var( --border-color-base );
-			border-radius: var( --border-radius--medium );
 			height: fit-content;
+			margin-top: 0 !important;
 			font-size: var( --font-size-small );
+			border: var( --border-width-base ) solid var( --border-color-base );
+			border-radius: var( --border-radius-medium );
 
 			// Hidden pane
 			&:has( .dtsp-hidden ) {
@@ -398,9 +398,9 @@ div.dtsp-panesContainer {
 					background-color: transparent;
 
 					&:hover {
+						background-color: var( --background-color-button-quiet--hover );
+						border-radius: var( --border-radius-medium );
 						opacity: 1;
-						background-color: var( --background-color-quiet--hover );
-						border-radius: var( --border-radius--medium );
 					}
 
 					.dtsp-disabledButton {
@@ -413,44 +413,44 @@ div.dtsp-panesContainer {
 
 			div.dtsp-topRow {
 				min-height: auto;
-				border-bottom-left-radius: 0;
-				border-bottom-right-radius: 0;
 				background-color: var( --color-surface-2 );
+				border-bottom-right-radius: 0;
+				border-bottom-left-radius: 0;
 
 				div.dtsp-searchCont input.dtsp-search {
 					padding-left: var( --space-sm );
-					border-radius: var( --border-radius--small );
+					border-radius: var( --border-radius-base );
 				}
 			}
 
 			input.dtsp-paneInputButton {
 				&::placeholder {
-					color: var( --color-base--subtle );
+					color: var( --color-subtle );
 				}
 			}
 
 			button.dtsp-paneButton {
-				opacity: var( --opacity-icon-base );
 				filter: var( --filter-invert );
+				opacity: var( --opacity-icon-base );
 
 				&:hover {
 					opacity: var( --opacity-icon-base--hover );
 				}
 
 				&:active {
-					opacity: var( --opacity-icon-base--active );
+					opacity: var( --opacity-icon-base--selected );
 				}
 			}
 
 			input.dtsp-paneInputButton,
 			button.dtsp-paneButton {
-				margin: 0;
 				width: 36px;
 				height: 40px;
-				border-radius: var( --border-radius--small );
+				margin: 0;
+				border-radius: var( --border-radius-base );
 
 				&:hover {
-					background-color: var( --background-color-quiet--hover );
+					background-color: var( --background-color-button-quiet--hover );
 				}
 			}
 
@@ -464,19 +464,16 @@ div.dtsp-panesContainer {
 			}
 
 			button.dtsp-collapseButton span.dtsp-caret {
+				top: 4px;
 				font-size: 24px;
 			}
 
 			button.clearButton,
 			button.dtsp-collapseButton span.dtsp-caret {
+				font-weight: var( --font-weight-medium );
 				// Force to be black to work with filter
 				color: #000;
-    			vertical-align: middle;
-    			font-weight: var( --font-weight-medium );
-			}
-
-			button.dtsp-collapseButton span.dtsp-caret {
-				top: 4px;
+				vertical-align: middle;
 			}
 
 			button.dtsp-disabledButton {
@@ -489,23 +486,23 @@ div.dtsp-panesContainer {
 		background: transparent !important;
 
 		table {
-			tr>th,
-			tr>td {
+			tr > th,
+			tr > td {
 				padding: var( --space-xs ) var( --space-sm );
 			}
 		}
 
 		td.dtsp-nameColumn {
 			&:hover {
-				background-color: var( --background-color-quiet--hover );
+				background-color: var( --background-color-button-quiet--hover );
 			}
 		}
 
 		div.dtsp-nameCont span.dtsp-pill {
-			background: var( --color-surface-2 );
-			border: 1px solid var( --border-color-base );
-			color: var( --color-base );
 			font-size: var( --font-size-x-small );
+			color: var( --color-base );
+			background: var( --color-surface-2 );
+			border: var( --border-width-base ) solid var( --border-color-base );
 		}
 	}
 }

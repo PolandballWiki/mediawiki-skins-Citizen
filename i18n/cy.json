@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Afalau"
+			"Afalau",
+			"Ceirios"
 		]
 	},
 	"citizen-prefs-talkpage": "[[mw:Skin_talk:Citizen|Sgwrs]]",
@@ -13,15 +14,9 @@
 	"citizen-sitestats-edits-label": "golygiadau",
 	"citizen-page-info-copyright": "Hawlfraint",
 	"citizen-page-info-credits": "Cydnabyddiaeth",
-	"citizen-search-mediasearch": "Chwilio am gyfryngau",
+	"citizen-search-fulltext": "Chwilio testun",
+	"citizen-search-mediasearch": "Chwilio cyfryngau",
 	"citizen-search-editpage": "Golygu neu greu tudalen",
-	"citizen-tagline-user-regdate": "Ymunodd $1",
-	"prefs-citizen-theme-label": "Thema",
-	"prefs-citizen-theme-option-auto": "Awtomatig",
-	"prefs-citizen-theme-option-light": "Golau",
-	"prefs-citizen-theme-option-dark": "Tywyll",
-	"prefs-citizen-fontsize-label": "Maint y ffont",
-	"prefs-citizen-pagewidth-label": "Lled y dudalen",
-	"prefs-citizen-lineheight-label": "Uchder y llinell",
-	"prefs-citizen-resetbutton-label": "Ailosod i ddiofyn"
+	"citizen-share": "Rhannu'r dudalen hon",
+	"citizen-tagline-user-regdate": "Ymunodd $1"
 }

@@ -8,15 +8,17 @@
  * Date: 2024-02-26
 */
 
+@import '../../../resources/variables.less';
+
 /* Special:Version */
 /* MediaWiki License */
 #mw-version-license + .plainlinks {
-    margin-top: var(--space-md);
-    padding: var( --space-md );
-	border: 1px solid var( --border-color-base );
-    border-radius: var( --border-radius--medium );
-    font-size: var( --font-size-small );
-    color: var( --color-base--subtle );
+	padding: var( --space-md );
+	margin-top: var( --space-md );
+	font-size: var( --font-size-small );
+	color: var( --color-subtle );
+	border: var( --border-width-base ) solid var( --border-color-base );
+	border-radius: var( --border-radius-medium );
 
 	> p {
 		margin-top: 0;
@@ -25,26 +27,28 @@
 
 /* Installed software */
 #sv-software {
-    display: block;
-    border: 0;
-	line-height: var( --line-height-sm );
+	display: block;
+	max-width: none;
+	line-height: var( --line-height-xx-small );
+	box-shadow: none;
 
 	tbody {
 		display: grid;
-    	grid-template-columns: repeat( auto-fit, minmax( 320px, 1fr ) );
+		grid-template-columns: 1fr 1fr;
 		gap: var( --space-xs );
+
+		@media ( min-width: @min-width-breakpoint-desktop ) {
+			grid-template-columns: repeat( auto-fit, minmax( 320px, 1fr ) );
+		}
 	}
 
 	tr {
+		display: grid;
+		place-content: center;
 		padding: var( --space-sm ) var( --space-md );
-    	border: 1px solid var( --border-color-base );
-    	border-radius: var( --border-radius--medium );
-		display: flex;
-		flex-direction: column;
-
-		&:first-child {
-			display: none; // Hide table header
-		}
+		text-align: center;
+		border: var( --border-width-base ) solid var( --border-color-base );
+		border-radius: var( --border-radius-medium );
 	}
 
 	td {
@@ -52,10 +56,29 @@
 		border-top: 0;
 
 		&:first-child {
-			font-weight: var( --font-weight-semibold );
-			font-size: var( --font-size-x-large );
+			font-size: var( --font-size-large );
+			font-weight: var( --font-weight-semi-bold );
 		}
 	}
+
+	// MW 1.43+ - Remove when we drop 1.39
+	&:has( thead ) {
+		thead tr {
+			// Hide table header
+			display: none;
+		}
+	}
+
+	&:not( :has( thead ) ) {
+		tbody tr:first-child {
+			display: none;
+		}
+	}
+}
+
+.citizen-overflow-wrapper:has( #sv-software ) {
+	max-width: none;
+	box-shadow: none;
 }
 
 // Highlight Citizen skin
@@ -63,22 +86,22 @@
 	background: var( --color-surface-2 );
 }
 
-.mw-version-ext-vcs-timestamp,
-.mw-version-ext-vcs-version {
-	color: var( --color-base--subtle );
+span.mw-version-ext-vcs-timestamp,
+span.mw-version-ext-vcs-version {
+	color: var( --color-subtle );
 }
 
 .mw-version-ext-name,
 .mw-version-library-name {
-	font-weight: var( --font-weight-semibold );
+	font-weight: var( --font-weight-semi-bold );
 }
 
-.skin-citizen-dark {
+.skin-theme-clientpref-night {
 	#mw-allmessagestable tbody:hover td {
-		background-color: var( --background-color-primary--active );
+		background-color: var( --background-color-progressive-subtle );
 	}
 
 	.mw-protectedpages-unknown {
-		color: var( --color-base--subtle );
+		color: var( --color-subtle );
 	}
 }

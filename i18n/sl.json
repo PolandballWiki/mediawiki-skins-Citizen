@@ -11,6 +11,9 @@
 	"citizen-drawer-toggle": "Preklopi meni",
 	"citizen-usermenu-toggle": "Preklop osebnega menija",
 	"citizen-search-toggle": "Preklop iskanja",
+	"citizen-search-keyhint-exit": "Izhod iz iskanja",
+	"citizen-search-keyhint-open": "Odprtje iskanja",
+	"citizen-search-keyhint-select": "Izbira predmeta",
 	"citizen-languages-toggle": "Več jezikov",
 	"citizen-actions-more-toggle": "Več dejanj",
 	"citizen-sitestats-articles-label": "članki",
@@ -38,12 +41,8 @@
 	"citizen-tagline-ns-help": "Stran pomoči",
 	"citizen-tagline-ns-category": "Stran kategorije",
 	"citizen-tagline-user-regdate": "Pridružitev: $1",
-	"prefs-citizen-theme-label": "Tema",
-	"prefs-citizen-theme-option-auto": "Samodejno",
-	"prefs-citizen-theme-option-light": "Svetla",
-	"prefs-citizen-theme-option-dark": "Temna",
-	"prefs-citizen-fontsize-label": "Velikost pisave",
-	"prefs-citizen-pagewidth-label": "Širina strani",
-	"prefs-citizen-lineheight-label": "Višina vrstice",
-	"prefs-citizen-resetbutton-label": "Ponastavi na privzeto"
+	"citizen-theme-night-label": "Temno",
+	"citizen-feature-autohide-navigation-name": "Samodejno skrij navigacijo",
+	"citizen-feature-autohide-navigation-0-label": "Izklop",
+	"citizen-feature-autohide-navigation-1-label": "Vklop"
 }
